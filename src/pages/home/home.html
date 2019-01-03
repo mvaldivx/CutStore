@@ -1,14 +1,46 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
+      <ion-buttons start>
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      </ion-buttons>
     <ion-title>
-      Ionic Blank
+      <img class="logo" src="assets/imgs/logo1.png">
     </ion-title>
-  </ion-navbar>
+    <!-- <ion-buttons end>
+        <button ion-button icon-only (click)="register()">
+          <ion-icon name="notifications"></ion-icon>
+        </button>
+      </ion-buttons>
+      -->
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+<ion-content class="card-background-page">
+  <div class="contenido">
+    <ion-card (click)="MostrarInfo('Comida',1);">
+          <img src="assets/imgs/Comida.jpg"/>
+          <div class="card-title">Comida</div>
+          <!-- <div class="card-subtitle">214 Articulos</div> -->
+        </ion-card>
+        <ion-card (click)="MostrarInfo('Accesorios',2);">
+          <img src="assets/imgs/Accesorios.jpg"/>
+          <div class="card-title">Accesorios</div>
+        </ion-card>
+        <ion-card (click)="MostrarInfo('Utiles',3);">
+          <img src="assets/imgs/Utiles.jpg"/>
+          <div class="card-title">Utiles</div>
+        </ion-card>
+        <ion-card (click)="MostrarInfo('Ropa',4);">
+          <img src="assets/imgs/Ropa.jpg"/>
+          <div class="card-title">Ropa</div>
+        </ion-card>
+        <ion-card (click)="MostrarInfo('Anuncios',5);">
+          <img src="assets/imgs/Anuncios.jpg"/>
+          <div class="card-title">Anuncios</div>
+        </ion-card>
+  </div>
+      
+  
+    </ion-content>

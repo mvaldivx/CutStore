@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { App, NavController, MenuController, Alert  } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +7,18 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    public app: App,
+    public menu: MenuController
+    ) {
 
   }
+
+  MostrarInfo(tit,i){
+    this.navCtrl.push('PublicacionesPage',{titulo:tit, id:i, imag:"assets/imgs/" + tit + ".jpg"});
+    
+}
+
 
 }
