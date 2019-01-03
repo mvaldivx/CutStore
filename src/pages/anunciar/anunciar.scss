@@ -1,0 +1,54 @@
+page-anunciar {
+  font-family: 'Montserrat', sans-serif;
+
+    .bar-button-default{
+        color: #42A520;
+    }
+   .Tel{
+       padding-top:30px;
+   }
+   .button{
+       //
+       background-color: #42A520;
+   }
+   .button.activated{
+    background-color: #2ec95c;
+   }
+   .imgsubir{    
+       max-width: 50%;
+    border: 0;
+    margin-left: 25%;
+    margin-top:80px;
+    margin-bottom:30px;
+    }
+    .loaded{
+      width:200%;
+    }
+   .btnIniciar{
+    margin-top:40px;
+   }
+   .bar-buttons,
+  .toolbar-title {
+    color: #fff;
+  }
+  .toggle-ios.toggle-checked .toggle-icon{
+    background-color: #2ec95c;
+  }
+  ion-header {
+    .toolbar {
+      position: absolute;
+  
+      .toolbar-background {
+        background: transparent;
+      }
+      .toolbar-title {
+        color: black;
+      }
+      .btnCancelar{
+          color: #2ec95c;
+          font-size:30px;
+      }
+    }
+
+  }
+}
