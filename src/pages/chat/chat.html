@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ChatPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{Usuario}}</ion-title>
+    <ion-buttons start>
+        <button ion-button icon-only (click)="atras();" class="btnCancelar">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+        </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #content padding>
+    <!-- <ion-card > -->
+      <div class="chatBubble" *ngFor="let message of messages">
+        <div class="chat-bubble" [ngClass]="(message.idUsuario == accountId) ? 'chat-bubble right' : 'chat-bubble left'">
+            <span style="font-weight:bold;">{{message.nombreU}} : </span>
+          <div class="message"> {{message.mensaje}} </div>
+            <div class="message-detail">
+                
+                <!--<span>{{msg.time}}</span>-->
+            </div>
+        </div>
+      </div>
+       <!-- <ion-card-header>
+          {{message.nombreU}} dice:
+        </ion-card-header>
+        <ion-card-content>
+          {{message.mensaje}}
+        </ion-card-content>
+      </ion-card>
+    -->
+      <div id="end"></div>
+    
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <ion-input placeholder="Escribe algo..." [(ngModel)]="message"></ion-input>
+      <ion-buttons end>
+        <button ion-button icon-right class="btnCancelar" (click)="EnviarMensaje()">
+           
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+  

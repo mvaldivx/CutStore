@@ -1,0 +1,21 @@
+page-mensajes {
+    font-family: 'Montserrat', sans-serif;
+    .btnCancelar{
+        color: #2ec95c;
+        font-size:30px;
+    }
+    ion-avatar img  {
+        width:70% !important;
+        height : 70% !important;
+        max-width: 100px !important;  //any size
+        max-height: 100px !important; //any size
+        margin:0;
+        padding:0;
+        }
+        .label{
+            margin:0;
+        }
+        .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start]{
+            margin:5px;
+        }
+}

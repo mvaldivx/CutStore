@@ -1,0 +1,33 @@
+<!--
+  Generated template for the MisAnunciosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Mis Anuncios</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="close()" class="btnCancelar" end>
+            <ion-icon name="close"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let an of anuncios" >
+       <ion-thumbnail item-start >
+         <img class="imgAnuncio" src="http://mauvalsa.com/CutStore/PhotosAnuncios/{{an.idAnuncio}}.jpg">
+       </ion-thumbnail>
+       <h2>{{an.Titulo}}</h2>
+       <p>{{an.Descripcion}}</p>
+       <button ion-button clear item-end (click)="Editar(an.idAnuncio)" >Editar</button>
+     </ion-item>
+   
+   </ion-list>
+</ion-content>

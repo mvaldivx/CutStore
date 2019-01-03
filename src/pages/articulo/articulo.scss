@@ -1,0 +1,45 @@
+page-articulo {
+  font-family: 'Montserrat', sans-serif;
+
+  .titulo, .descripcion, .activo, .ubicacion, .entregaDom, .precio{
+    text-align:center;
+  }
+    .bar-button-default{
+        color: #42A520;
+    }
+  
+   .button{
+       //
+       background-color: #42A520;
+   }
+   .button.activated{
+    background-color: #2ec95c;
+   }
+    .loaded{
+      width:200%;
+    }
+   .bar-buttons,
+  .toolbar-title {
+    color: #fff;
+  }
+  .toggle-ios.toggle-checked .toggle-icon{
+    background-color: #2ec95c;
+  }
+  ion-header {
+    .toolbar {
+      position: absolute;
+  
+      .toolbar-background {
+        background: transparent;
+      }
+      .toolbar-title {
+        color: black;
+      }
+      .btnCancelar{
+          color: #2ec95c;
+          font-size:30px;
+      }
+    }
+
+  }
+}

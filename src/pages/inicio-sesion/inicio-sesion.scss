@@ -1,0 +1,52 @@
+page-inicio-sesion {
+  font-family: 'Montserrat', sans-serif;
+
+
+    .bar-button-default{
+        color: #42A520;
+    }
+   .Tel{
+       padding-top:30px;
+   }
+   .button{
+       //
+       background-color: #42A520;
+   }
+   .button.activated{
+    background-color: #2ec95c;
+   }
+   
+   .btnIniciar{
+    margin-top:40px;
+   }
+   .bar-buttons,
+  .toolbar-title {
+    color: #fff;
+  }
+  ion-header {
+    .toolbar {
+      position: absolute;
+  
+      .toolbar-background {
+        background: transparent;
+      }
+      .toolbar-title {
+        color: black;
+      }
+      .btnCancelar{
+          color: #2ec95c;
+          font-size:30px;
+      }
+    }
+
+  }
+    
+}
+
+
+.scroll-content{
+    padding:0px;
+}
+.hide {
+    display: none;
+  }
