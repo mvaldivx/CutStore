@@ -11,12 +11,12 @@ import * as firebase from 'firebase';
 var modalP: boolean = false; 
 
 var config = {
-  apiKey: "AIzaSyAkl22bWzhgWYIsnoyUAeif0h9sM9UQFbc",
-  authDomain: "cutstoreapp.firebaseapp.com",
-  databaseURL: "https://cutstoreapp.firebaseio.com",
-  projectId: "cutstoreapp",
-  storageBucket: "cutstoreapp.appspot.com",
-  messagingSenderId: "337606402651"
+  apiKey: "AIzaSyDadHJM7Gm-z8SjWg90gIEE6UG31HPQWPU",
+  authDomain: "cutstore.firebaseapp.com",
+  databaseURL: "https://cutstore.firebaseio.com",
+  projectId: "cutstore",
+  storageBucket: "cutstore.appspot.com",
+  messagingSenderId: "383058863741"
 };
 
 @Component({

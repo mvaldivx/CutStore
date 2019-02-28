@@ -139,6 +139,7 @@ export class AnunciarPage {
     if(this.activo ===true){
       activ =1;
     }
+    //aa
     var link = "http://mauvalsa.com/CutStore/RegistrarPublicacion.php";
     var info = JSON.stringify({'accountid':this.accountId, 'titulo':this.titulo,'desc':this.desc,'ubicacion': this.ubicacion,
                               'dom': domi, 'precio':this.precio, 'activo':activ, 'cat': this.categoria, 'tipo': tipo, 'idAnuncio':this.idAnuncio});
