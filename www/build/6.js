@@ -1,14 +1,14 @@
 webpackJsonp([6],{
 
-/***/ 436:
+/***/ 379:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioSesionPageModule", function() { return InicioSesionPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MensajesPageModule", function() { return MensajesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio_sesion__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mensajes__ = __webpack_require__(389);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,35 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var InicioSesionPageModule = /** @class */ (function () {
-    function InicioSesionPageModule() {
+var MensajesPageModule = /** @class */ (function () {
+    function MensajesPageModule() {
     }
-    InicioSesionPageModule = __decorate([
+    MensajesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__inicio_sesion__["a" /* InicioSesionPage */],
+                __WEBPACK_IMPORTED_MODULE_2__mensajes__["a" /* MensajesPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__inicio_sesion__["a" /* InicioSesionPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__mensajes__["a" /* MensajesPage */]),
             ],
         })
-    ], InicioSesionPageModule);
-    return InicioSesionPageModule;
+    ], MensajesPageModule);
+    return MensajesPageModule;
 }());
 
-//# sourceMappingURL=inicio-sesion.module.js.map
+//# sourceMappingURL=mensajes.module.js.map
 
 /***/ }),
 
-/***/ 451:
+/***/ 389:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InicioSesionPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MensajesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_storage__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(243);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,89 +58,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * Generated class for the InicioSesionPage page.
+ * Generated class for the MensajesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var InicioSesionPage = /** @class */ (function () {
-    function InicioSesionPage(navCtrl, navParams, viewCtrl, http, nativestorage, modalCtrl) {
+var MensajesPage = /** @class */ (function () {
+    function MensajesPage(navCtrl, navParams, viewCtrl, http, loadingCtrl, modalCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.viewCtrl = viewCtrl;
         this.http = http;
-        this.nativestorage = nativestorage;
+        this.loadingCtrl = loadingCtrl;
         this.modalCtrl = modalCtrl;
-        this.userInfo = {};
-        this.response = {};
-        this.registrado = false;
+        this.mensajes = [];
+        this.AccountId = "";
+        this.usuario = "";
+        this.AccountId = this.navParams.get('accountId');
+        this.usuario = this.navParams.get('usuario');
     }
-    InicioSesionPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad InicioSesionPage');
+    MensajesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MensajesPage');
+        var loader = this.loadingCtrl.create();
+        loader.present();
+        this.ObtieneMensajes();
+        loader.dismiss();
     };
-    InicioSesionPage.prototype.close = function () {
-        this.viewCtrl.dismiss();
-    };
-    InicioSesionPage.prototype.register = function () {
+    MensajesPage.prototype.ObtieneMensajes = function () {
         var _this = this;
-        window.AccountKitPlugin.loginWithPhoneNumber({
-            useAccessToken: true,
-            defaultCountryCode: "MX",
-            facebookNotificationsEnabled: true,
-        }, function (successdata) {
-            window.AccountKitPlugin.getAccount(function (user) {
-                //alert(JSON.stringify(user));
-                _this.userInfo = user;
-                _this.registrado = true;
-                _this.ValidaUsuario();
-            });
-        }, function (err) {
-            //alert(err);
-        });
-    };
-    InicioSesionPage.prototype.ValidaUsuario = function () {
-        var _this = this;
-        var link = "http://mauvalsa.com/CutStore/ValidaUsuario.php";
-        var info = JSON.stringify({ accountid: this.userInfo.accountId, 'tel': this.userInfo.phoneNumber });
-        //alert(JSON.stringify(this.userInfo));
+        var link = "http://mauvalsa.com/CutStore/ObtieneMensajes.php";
+        var info = JSON.stringify({ 'accountId': this.AccountId });
         this.http.post(link, info)
             .subscribe(function (data) {
-            _this.response = data.json();
-            if (_this.response.success === true) {
-                _this.nativestorage.setItem('Usuario', JSON.stringify({ 'accountId': _this.userInfo.accountId, 'Telefono': _this.userInfo.phoneNumber, 'Nombre': _this.response.nombre })).then(function (success) {
-                    _this.nativestorage.getItem('Usuario').then(function (usr) {
-                    });
-                });
-                _this.viewCtrl.dismiss();
-                location.reload();
-            }
-            else {
-                _this.registrado = true;
-                var modal = _this.modalCtrl.create('RegistrarUsuarioPage', { userInfo: _this.userInfo });
-                modal.present();
-                //alert(this.registrado);
-            }
+            //alert(JSON.stringify(data));
+            _this.mensajes = data.json();
         }, function (error) {
+            alert(error);
             console.log(error);
         });
     };
-    InicioSesionPage = __decorate([
+    MensajesPage.prototype.close = function () {
+        this.viewCtrl.dismiss();
+    };
+    MensajesPage.prototype.IniciaChat = function (idMensaje) {
+        var options = { cssClass: 'modalPage' };
+        var modal = this.modalCtrl.create('ChatPage', { idMensaje: idMensaje, accountId: this.AccountId, usuario: this.usuario });
+        modal.onDidDismiss(function (data) {
+        });
+        modal.present();
+    };
+    MensajesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-inicio-sesion',template:/*ion-inline-start:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/inicio-sesion/inicio-sesion.html"*/'<!--\n  Generated template for the InicioSesionPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header no-border>\n  <ion-navbar transparent>\n    <ion-buttons end>\n      <button ion-button (click)="close()" class="btnCancelar" end>\n          <ion-icon name="close"></ion-icon>\n        </button>\n    </ion-buttons>\n      \n  </ion-navbar>\n  \n</ion-header>\n<ion-content >\n        \n  <img src="assets/imgs/Cut1.png"/>\n  <div>\n    <button ion-button full class="btnIniciar" (click)="register();">Iniciar Sesion</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/inicio-sesion/inicio-sesion.html"*/,
+            selector: 'page-mensajes',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\mensajes\mensajes.html"*/'<!--\n\n  Generated template for the MensajesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Mensajes</ion-title>\n\n    <ion-buttons end>\n\n        <button ion-button (click)="close()" class="btnCancelar" end>\n\n            <ion-icon name="close"></ion-icon>\n\n          </button>\n\n      </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <div style="text-align:center; color:grey;" *ngIf="mensajes.length <1">\n\n    <h1>Aun no tienes mensajes</h1>\n\n  </div>\n\n    <ion-list>\n\n        <ion-item *ngFor="let me of mensajes" (click)="IniciaChat(me.idMensaje)">\n\n          <ion-item>\n\n            <ion-avatar item-start>\n\n              <img class="imgMensaje" src="http://mauvalsa.com/CutStore/PhotosAnuncios/{{me.idArticulo}}.jpg">\n\n            </ion-avatar>\n\n            <h2>{{me.nombre}}</h2>\n\n            <h6>{{me.titulo}}</h6>\n\n          </ion-item>\n\n        </ion-item>\n\n      </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\mensajes\mensajes.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_storage__["a" /* NativeStorage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
-    ], InicioSesionPage);
-    return InicioSesionPage;
+    ], MensajesPage);
+    return MensajesPage;
 }());
 
-//# sourceMappingURL=inicio-sesion.js.map
+//# sourceMappingURL=mensajes.js.map
 
 /***/ })
 

@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 437:
+/***/ 380:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MensajesPageModule", function() { return MensajesPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MisAnunciosPageModule", function() { return MisAnunciosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mensajes__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mis_anuncios__ = __webpack_require__(390);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MensajesPageModule = /** @class */ (function () {
-    function MensajesPageModule() {
+var MisAnunciosPageModule = /** @class */ (function () {
+    function MisAnunciosPageModule() {
     }
-    MensajesPageModule = __decorate([
+    MisAnunciosPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__mensajes__["a" /* MensajesPage */],
+                __WEBPACK_IMPORTED_MODULE_2__mis_anuncios__["a" /* MisAnunciosPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__mensajes__["a" /* MensajesPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__mis_anuncios__["a" /* MisAnunciosPage */]),
             ],
         })
-    ], MensajesPageModule);
-    return MensajesPageModule;
+    ], MisAnunciosPageModule);
+    return MisAnunciosPageModule;
 }());
 
-//# sourceMappingURL=mensajes.module.js.map
+//# sourceMappingURL=mis-anuncios.module.js.map
 
 /***/ }),
 
-/***/ 452:
+/***/ 390:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MensajesPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MisAnunciosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(243);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,70 +59,65 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the MensajesPage page.
+ * Generated class for the MisAnunciosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var MensajesPage = /** @class */ (function () {
-    function MensajesPage(navCtrl, navParams, viewCtrl, http, loadingCtrl, modalCtrl) {
+var MisAnunciosPage = /** @class */ (function () {
+    function MisAnunciosPage(navCtrl, navParams, viewCtrl, http, modalCtrl, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.viewCtrl = viewCtrl;
         this.http = http;
-        this.loadingCtrl = loadingCtrl;
         this.modalCtrl = modalCtrl;
-        this.mensajes = [];
-        this.AccountId = "";
-        this.usuario = "";
-        this.AccountId = this.navParams.get('accountId');
-        this.usuario = this.navParams.get('usuario');
+        this.loadingCtrl = loadingCtrl;
+        this.anuncios = [];
+        this.accountid = "";
+        this.accountid = this.navParams.get("accountId");
     }
-    MensajesPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad MensajesPage');
-        var loader = this.loadingCtrl.create();
-        loader.present();
-        this.ObtieneMensajes();
-        loader.dismiss();
+    MisAnunciosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MisAnunciosPage');
+        this.ObtieneAnuncios();
     };
-    MensajesPage.prototype.ObtieneMensajes = function () {
-        var _this = this;
-        var link = "http://mauvalsa.com/CutStore/ObtieneMensajes.php";
-        var info = JSON.stringify({ 'accountId': this.AccountId });
-        this.http.post(link, info)
-            .subscribe(function (data) {
-            //alert(JSON.stringify(data));
-            _this.mensajes = data.json();
-        }, function (error) {
-            alert(error);
-            console.log(error);
-        });
-    };
-    MensajesPage.prototype.close = function () {
+    MisAnunciosPage.prototype.close = function () {
         this.viewCtrl.dismiss();
     };
-    MensajesPage.prototype.IniciaChat = function (idMensaje) {
-        var options = { cssClass: 'modalPage' };
-        var modal = this.modalCtrl.create('ChatPage', { idMensaje: idMensaje, accountId: this.AccountId, usuario: this.usuario });
+    MisAnunciosPage.prototype.ObtieneAnuncios = function () {
+        var _this = this;
+        var loader = this.loadingCtrl.create();
+        loader.present();
+        var link = "http://mauvalsa.com/CutStore/ObtieneMisAnuncios.php";
+        var info = JSON.stringify({ 'accountId': this.accountid });
+        this.http.post(link, info)
+            .subscribe(function (data) {
+            _this.anuncios = data.json();
+        }, function (err) {
+            console.log(err);
+        });
+        loader.dismiss();
+    };
+    MisAnunciosPage.prototype.Editar = function (idAnuncio) {
+        var modal = this.modalCtrl.create('AnunciarPage', { accountId: this.accountid, tipo: 2, idAnuncio: idAnuncio });
         modal.onDidDismiss(function (data) {
         });
         modal.present();
     };
-    MensajesPage = __decorate([
+    MisAnunciosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mensajes',template:/*ion-inline-start:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/mensajes/mensajes.html"*/'<!--\n  Generated template for the MensajesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mensajes</ion-title>\n    <ion-buttons end>\n        <button ion-button (click)="close()" class="btnCancelar" end>\n            <ion-icon name="close"></ion-icon>\n          </button>\n      </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div style="text-align:center; color:grey;" *ngIf="mensajes.length <1">\n    <h1>Aun no tienes mensajes</h1>\n  </div>\n    <ion-list>\n        <ion-item *ngFor="let me of mensajes" (click)="IniciaChat(me.idMensaje)">\n          <ion-item>\n            <ion-avatar item-start>\n              <img class="imgMensaje" src="http://mauvalsa.com/CutStore/PhotosAnuncios/{{me.idArticulo}}.jpg">\n            </ion-avatar>\n            <h2>{{me.nombre}}</h2>\n            <h6>{{me.titulo}}</h6>\n          </ion-item>\n        </ion-item>\n      </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/mensajes/mensajes.html"*/,
+            selector: 'page-mis-anuncios',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\mis-anuncios\mis-anuncios.html"*/'<!--\n\n  Generated template for the MisAnunciosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Mis Anuncios</ion-title>\n\n    <ion-buttons end>\n\n        <button ion-button (click)="close()" class="btnCancelar" end>\n\n            <ion-icon name="close"></ion-icon>\n\n          </button>\n\n      </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item *ngFor="let an of anuncios" >\n\n       <ion-thumbnail item-start >\n\n         <img class="imgAnuncio" src="http://mauvalsa.com/CutStore/PhotosAnuncios/{{an.idAnuncio}}.jpg">\n\n       </ion-thumbnail>\n\n       <h2>{{an.Titulo}}</h2>\n\n       <p>{{an.Descripcion}}</p>\n\n       <button ion-button clear item-end (click)="Editar(an.idAnuncio)" >Editar</button>\n\n     </ion-item>\n\n   \n\n   </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\mis-anuncios\mis-anuncios.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
-    ], MensajesPage);
-    return MensajesPage;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+    ], MisAnunciosPage);
+    return MisAnunciosPage;
 }());
 
-//# sourceMappingURL=mensajes.js.map
+//# sourceMappingURL=mis-anuncios.js.map
 
 /***/ })
 

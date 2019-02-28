@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController , Platform} from 'ionic-angular';
 import { Http } from '@angular/http';
-import { NativeStorage } from '@ionic-native/native-storage';
-import { RegistrarUsuarioPage } from '../registrar-usuario/registrar-usuario';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the InicioSesionPage page.
@@ -25,7 +24,7 @@ export class InicioSesionPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public http: Http,
-    public nativestorage: NativeStorage,
+    public nativestorage: Storage,
     public modalCtrl:ModalController
     ) {
   }
@@ -65,9 +64,9 @@ export class InicioSesionPage {
     .subscribe(data =>{
       this.response = data.json();
       if(this.response.success === true){
-        this.nativestorage.setItem('Usuario',JSON.stringify({'accountId':this.userInfo.accountId, 'Telefono':this.userInfo.phoneNumber, 'Nombre':this.response.nombre})).then(
+        this.nativestorage.set('Usuario',JSON.stringify({'accountId':this.userInfo.accountId, 'Telefono':this.userInfo.phoneNumber, 'Nombre':this.response.nombre})).then(
           (success)=>{
-          this.nativestorage.getItem('Usuario').then((usr) => {
+          this.nativestorage.get('Usuario').then((usr) => {
           });
         });
         this.viewCtrl.dismiss();

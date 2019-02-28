@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 434:
+/***/ 378:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArticuloPageModule", function() { return ArticuloPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioSesionPageModule", function() { return InicioSesionPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articulo__ = __webpack_require__(443);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio_sesion__ = __webpack_require__(388);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ArticuloPageModule = /** @class */ (function () {
-    function ArticuloPageModule() {
+var InicioSesionPageModule = /** @class */ (function () {
+    function InicioSesionPageModule() {
     }
-    ArticuloPageModule = __decorate([
+    InicioSesionPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__articulo__["a" /* ArticuloPage */],
+                __WEBPACK_IMPORTED_MODULE_2__inicio_sesion__["a" /* InicioSesionPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__articulo__["a" /* ArticuloPage */]),
-            ]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__inicio_sesion__["a" /* InicioSesionPage */]),
+            ],
         })
-    ], ArticuloPageModule);
-    return ArticuloPageModule;
+    ], InicioSesionPageModule);
+    return InicioSesionPageModule;
 }());
 
-//# sourceMappingURL=articulo.module.js.map
+//# sourceMappingURL=inicio-sesion.module.js.map
 
 /***/ }),
 
-/***/ 443:
+/***/ 388:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArticuloPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InicioSesionPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_storage__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(138);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,99 +60,88 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * Generated class for the ArticuloPage page.
+ * Generated class for the InicioSesionPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ArticuloPage = /** @class */ (function () {
-    function ArticuloPage(navCtrl, navParams, nativestorage, modalCtrl, http, appCtrl) {
+var InicioSesionPage = /** @class */ (function () {
+    function InicioSesionPage(navCtrl, navParams, viewCtrl, http, nativestorage, modalCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
+        this.http = http;
         this.nativestorage = nativestorage;
         this.modalCtrl = modalCtrl;
-        this.http = http;
-        this.appCtrl = appCtrl;
-        this.anuncio = {};
-        this.idAnuncio = "";
-        this.Usuario = {};
-        if (navParams.get("idAnuncio") === undefined) {
-            this.appCtrl.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
-        }
-        else {
-            this.idAnuncio = navParams.get("idAnuncio");
-            this.ValidaUsuario();
-            this.ObtieneInfo();
-        }
+        this.userInfo = {};
+        this.response = {};
+        this.registrado = false;
     }
-    ArticuloPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ArticuloPage');
+    InicioSesionPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InicioSesionPage');
     };
-    ArticuloPage.prototype.ObtieneInfo = function () {
+    InicioSesionPage.prototype.close = function () {
+        this.viewCtrl.dismiss();
+    };
+    InicioSesionPage.prototype.register = function () {
         var _this = this;
-        var link = "http://mauvalsa.com/CutStore/ObtieneAnuncioInfo.php";
-        var info = JSON.stringify({ 'idAnuncio': this.idAnuncio });
+        window.AccountKitPlugin.loginWithPhoneNumber({
+            useAccessToken: true,
+            defaultCountryCode: "MX",
+            facebookNotificationsEnabled: true,
+        }, function (successdata) {
+            window.AccountKitPlugin.getAccount(function (user) {
+                //alert(JSON.stringify(user));
+                _this.userInfo = user;
+                _this.registrado = true;
+                _this.ValidaUsuario();
+            });
+        }, function (err) {
+            //alert(err);
+        });
+    };
+    InicioSesionPage.prototype.ValidaUsuario = function () {
+        var _this = this;
+        var link = "http://mauvalsa.com/CutStore/ValidaUsuario.php";
+        var info = JSON.stringify({ accountid: this.userInfo.accountId, 'tel': this.userInfo.phoneNumber });
+        //alert(JSON.stringify(this.userInfo));
         this.http.post(link, info)
             .subscribe(function (data) {
-            _this.anuncio = data.json();
+            _this.response = data.json();
+            if (_this.response.success === true) {
+                _this.nativestorage.set('Usuario', JSON.stringify({ 'accountId': _this.userInfo.accountId, 'Telefono': _this.userInfo.phoneNumber, 'Nombre': _this.response.nombre })).then(function (success) {
+                    _this.nativestorage.get('Usuario').then(function (usr) {
+                    });
+                });
+                _this.viewCtrl.dismiss();
+                location.reload();
+            }
+            else {
+                _this.registrado = true;
+                var modal = _this.modalCtrl.create('RegistrarUsuarioPage', { userInfo: _this.userInfo });
+                modal.present();
+                //alert(this.registrado);
+            }
         }, function (error) {
             console.log(error);
         });
     };
-    ArticuloPage.prototype.atras = function () {
-        this.navCtrl.pop();
-    };
-    ArticuloPage.prototype.IniciarSesion = function () {
-        var data = "";
-        var options = { cssClass: 'modalPage' };
-        var modal = this.modalCtrl.create('InicioSesionPage', data);
-        modal.onDidDismiss(function (data) {
-        });
-        modal.present();
-    };
-    ArticuloPage.prototype.ValidaUsuario = function () {
-        var _this = this;
-        this.nativestorage.getItem('Usuario').then(function (usr) {
-            //alert(JSON.stringify(usr));
-            _this.Usuario = JSON.parse(usr);
-            //alert(this.Usuario); 
-        }, function (err) {
-            //alert(err);
-            console.log(err);
-        });
-    };
-    ArticuloPage.prototype.enviarMensaje = function () {
-        //alert(this.Usuario.accountId);
-        if (!this.Usuario.accountId) {
-            alert("Parece que no estas registrado, es necesario iniciar sesion");
-            this.IniciarSesion();
-        }
-        else {
-            var options = { cssClass: 'modalPage' };
-            var modal = this.modalCtrl.create('NuevoMensajePage', { accountId: this.Usuario.accountId, idAnuncio: this.idAnuncio });
-            modal.onDidDismiss(function (data) {
-                //alert(JSON.stringify(data));
-            });
-            modal.present();
-        }
-    };
-    ArticuloPage = __decorate([
+    InicioSesionPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-articulo',template:/*ion-inline-start:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/articulo/articulo.html"*/'<!--\n  Generated template for the ArticuloPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header no-border>\n  <ion-toolbar transparent>\n    <ion-buttons start>\n      <button ion-button icon-only (click)="atras();">\n        <ion-icon name="arrow-back"></ion-icon>\n      </button>\n      </ion-buttons>\n      \n  </ion-toolbar>\n  \n</ion-header>\n<ion-content >\n        \n  <img  class="loaded" src="http://mauvalsa.com/CutStore/PhotosAnuncios/{{anuncio.idAnuncio}}.jpg"/>\n\n  <div class="titulo">\n    <h1>{{anuncio.Titulo}}</h1>\n  </div>\n  <div class="descripcion">\n    <h5>{{anuncio.Descripcion}}</h5>\n  </div>\n  \n  <div class="ubicacion" >\n    <h6 *ngIf="anuncio.Ubicacion != \'\'">Ubicacion: {{anuncio.Ubicacion}}</h6>\n  </div>\n  <div class="entregaDom" >\n    <h6 *ngIf="anuncio.EntregaDom == 1">Entrega a Domicilio: SI</h6>\n    <h6 *ngIf="anuncio.EntregaDom == 0">Entrega a Domicilio: NO</h6>\n  </div><br>\n  <div class="activo" [hidden]="anuncio.Estatus < 1" >\n    <h3>Activo ahora!!</h3>\n  </div><br>\n  <div class="precio" >\n    <h4>Precio: ${{anuncio.Precio}}</h4>\n  </div>\n\n \n</ion-content>\n<ion-footer>\n  <button ion-button full class="btnIniciar" (click)="enviarMensaje()" >Contactar al vendedor</button>\n</ion-footer>\n'/*ion-inline-end:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/articulo/articulo.html"*/,
+            selector: 'page-inicio-sesion',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\inicio-sesion\inicio-sesion.html"*/'<!--\n\n  Generated template for the InicioSesionPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header no-border>\n\n  <ion-navbar transparent>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="close()" class="btnCancelar" end>\n\n          <ion-icon name="close"></ion-icon>\n\n        </button>\n\n    </ion-buttons>\n\n      \n\n  </ion-navbar>\n\n  \n\n</ion-header>\n\n<ion-content >\n\n        \n\n  <img src="assets/imgs/Cut1.png"/>\n\n  <div>\n\n    <button ion-button full class="btnIniciar" (click)="register();">Iniciar Sesion</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\inicio-sesion\inicio-sesion.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_native_storage__["a" /* NativeStorage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
-    ], ArticuloPage);
-    return ArticuloPage;
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
+    ], InicioSesionPage);
+    return InicioSesionPage;
 }());
 
-//# sourceMappingURL=articulo.js.map
+//# sourceMappingURL=inicio-sesion.js.map
 
 /***/ })
 

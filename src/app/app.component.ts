@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform, ModalController, ModalOptions, ToastController, Alert } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import * as firebase from 'firebase';
@@ -32,7 +32,7 @@ export class MyApp {
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
     public modalCtrl: ModalController,
-    public nativestorage: NativeStorage,
+    public nativestorage: Storage,
     public toastCtrl: ToastController
     ) {
     platform.ready().then(() => {
@@ -47,7 +47,7 @@ export class MyApp {
   }
 
   ValidaUsuario(){
-    this.nativestorage.getItem('Usuario').then(usr => {
+    this.nativestorage.get('Usuario').then((usr) => {
       this.Usuario = JSON.parse(usr);
       this.logeado= true;
       //alert(JSON.stringify(this.Usuario)); 

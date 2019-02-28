@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Alert } from 'ionic-angular';
 import { Http } from '@angular/http';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the RegistrarUsuarioPage page.
@@ -22,7 +22,7 @@ export class RegistrarUsuarioPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public http: Http,
-    public nativestorage: NativeStorage,
+    public nativestorage: Storage,
     public viewCtrl: ViewController,
     ) {
       this.userInf = this.navParams.get('userInfo');
@@ -40,7 +40,7 @@ export class RegistrarUsuarioPage {
     .subscribe(data =>{
       this.response = data.json();
       if (this.response.success === true){
-          this.nativestorage.setItem('Usuario',JSON.stringify({'accountId':this.userInf.accountId, 'Telefono':this.userInf.phoneNumber, 'Nombre':this.response.nombre}));
+          this.nativestorage.set('Usuario',JSON.stringify({'accountId':this.userInf.accountId, 'Telefono':this.userInf.phoneNumber, 'Nombre':this.response.nombre}));
           this.viewCtrl.dismiss();
           location.reload();
       }else{

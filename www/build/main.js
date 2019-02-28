@@ -1,12 +1,12 @@
 webpackJsonp([9],{
 
-/***/ 141:
+/***/ 139:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -29,7 +29,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/home/home.html"*/'<ion-header>\n  <ion-toolbar>\n      <ion-buttons start>\n          <button ion-button icon-only menuToggle>\n            <ion-icon name="menu"></ion-icon>\n          </button>\n      </ion-buttons>\n    <ion-title>\n      <img class="logo" src="assets/imgs/logo1.png">\n    </ion-title>\n    <!-- <ion-buttons end>\n        <button ion-button icon-only (click)="register()">\n          <ion-icon name="notifications"></ion-icon>\n        </button>\n      </ion-buttons>\n      -->\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class="card-background-page">\n  <div class="contenido">\n    <ion-card (click)="MostrarInfo(\'Comida\',1);">\n          <img src="assets/imgs/Comida.jpg"/>\n          <div class="card-title">Comida</div>\n          <!-- <div class="card-subtitle">214 Articulos</div> -->\n        </ion-card>\n        <ion-card (click)="MostrarInfo(\'Accesorios\',2);">\n          <img src="assets/imgs/Accesorios.jpg"/>\n          <div class="card-title">Accesorios</div>\n        </ion-card>\n        <ion-card (click)="MostrarInfo(\'Utiles\',3);">\n          <img src="assets/imgs/Utiles.jpg"/>\n          <div class="card-title">Utiles</div>\n        </ion-card>\n        <ion-card (click)="MostrarInfo(\'Ropa\',4);">\n          <img src="assets/imgs/Ropa.jpg"/>\n          <div class="card-title">Ropa</div>\n        </ion-card>\n        <ion-card (click)="MostrarInfo(\'Anuncios\',5);">\n          <img src="assets/imgs/Anuncios.jpg"/>\n          <div class="card-title">Anuncios</div>\n        </ion-card>\n  </div>\n      \n  \n    </ion-content>\n'/*ion-inline-end:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-toolbar>\n\n      <ion-buttons start>\n\n          <button ion-button icon-only menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      </ion-buttons>\n\n    <ion-title>\n\n      <img class="logo" src="assets/imgs/logo1.png">\n\n    </ion-title>\n\n    <!-- <ion-buttons end>\n\n        <button ion-button icon-only (click)="register()">\n\n          <ion-icon name="notifications"></ion-icon>\n\n        </button>\n\n      </ion-buttons>\n\n      -->\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="card-background-page">\n\n  <div class="contenido">\n\n    <ion-card (click)="MostrarInfo(\'Comida\',1);">\n\n          <img src="assets/imgs/Comida.jpg"/>\n\n          <div class="card-title">Comida</div>\n\n          <!-- <div class="card-subtitle">214 Articulos</div> -->\n\n        </ion-card>\n\n        <ion-card (click)="MostrarInfo(\'Accesorios\',2);">\n\n          <img src="assets/imgs/Accesorios.jpg"/>\n\n          <div class="card-title">Accesorios</div>\n\n        </ion-card>\n\n        <ion-card (click)="MostrarInfo(\'Utiles\',3);">\n\n          <img src="assets/imgs/Utiles.jpg"/>\n\n          <div class="card-title">Utiles</div>\n\n        </ion-card>\n\n        <ion-card (click)="MostrarInfo(\'Ropa\',4);">\n\n          <img src="assets/imgs/Ropa.jpg"/>\n\n          <div class="card-title">Ropa</div>\n\n        </ion-card>\n\n        <ion-card (click)="MostrarInfo(\'Anuncios\',5);">\n\n          <img src="assets/imgs/Anuncios.jpg"/>\n\n          <div class="card-title">Anuncios</div>\n\n        </ion-card>\n\n  </div>\n\n      \n\n  \n\n    </ion-content>\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */],
@@ -42,7 +42,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 150:
+/***/ 148:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -55,49 +55,49 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 150;
+webpackEmptyAsyncContext.id = 148;
 
 /***/ }),
 
-/***/ 191:
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/anunciar/anunciar.module": [
-		433,
-		8
+		376,
+		1
 	],
 	"../pages/articulo/articulo.module": [
-		434,
-		7
+		375,
+		8
 	],
 	"../pages/chat/chat.module": [
-		435,
+		377,
 		0
 	],
 	"../pages/inicio-sesion/inicio-sesion.module": [
-		436,
-		6
+		378,
+		7
 	],
 	"../pages/mensajes/mensajes.module": [
-		437,
-		5
+		379,
+		6
 	],
 	"../pages/mis-anuncios/mis-anuncios.module": [
-		438,
-		4
+		380,
+		5
 	],
 	"../pages/nuevo-mensaje/nuevo-mensaje.module": [
-		439,
-		3
+		381,
+		4
 	],
 	"../pages/publicaciones/publicaciones.module": [
-		440,
-		2
+		382,
+		3
 	],
 	"../pages/registrar-usuario/registrar-usuario.module": [
-		441,
-		1
+		383,
+		2
 	]
 };
 function webpackAsyncContext(req) {
@@ -111,18 +111,18 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 191;
+webpackAsyncContext.id = 189;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 283:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(278);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -130,23 +130,23 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 306:
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_native_storage__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera_ngx__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer_ngx__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_ngx__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(139);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -178,8 +178,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/anunciar/anunciar.module#AnunciarPageModule', name: 'AnunciarPage', segment: 'anunciar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/articulo/articulo.module#ArticuloPageModule', name: 'ArticuloPage', segment: 'articulo', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/anunciar/anunciar.module#AnunciarPageModule', name: 'AnunciarPage', segment: 'anunciar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio-sesion/inicio-sesion.module#InicioSesionPageModule', name: 'InicioSesionPage', segment: 'inicio-sesion', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mensajes/mensajes.module#MensajesPageModule', name: 'MensajesPage', segment: 'mensajes', priority: 'low', defaultHistory: [] },
@@ -189,7 +189,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/registrar-usuario/registrar-usuario.module#RegistrarUsuarioPageModule', name: 'RegistrarUsuarioPage', segment: 'registrar-usuario', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* HttpModule */]
+                __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot()
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
@@ -199,10 +200,9 @@ var AppModule = /** @class */ (function () {
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_6__ionic_native_native_storage__["a" /* NativeStorage */],
-                __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__["a" /* FileTransfer */],
-                __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__["a" /* File */],
+                __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera_ngx__["a" /* Camera */],
+                __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer_ngx__["a" /* FileTransfer */],
+                __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_ngx__["a" /* File */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
             ]
         })
@@ -214,18 +214,18 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 432:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_storage__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -245,12 +245,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var modalP = false;
 var config = {
-    apiKey: "AIzaSyAkl22bWzhgWYIsnoyUAeif0h9sM9UQFbc",
-    authDomain: "cutstoreapp.firebaseapp.com",
-    databaseURL: "https://cutstoreapp.firebaseio.com",
-    projectId: "cutstoreapp",
-    storageBucket: "cutstoreapp.appspot.com",
-    messagingSenderId: "337606402651"
+    apiKey: "AIzaSyDadHJM7Gm-z8SjWg90gIEE6UG31HPQWPU",
+    authDomain: "cutstore.firebaseapp.com",
+    databaseURL: "https://cutstore.firebaseio.com",
+    projectId: "cutstore",
+    storageBucket: "cutstore.appspot.com",
+    messagingSenderId: "383058863741"
 };
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen, modalCtrl, nativestorage, toastCtrl) {
@@ -272,7 +272,7 @@ var MyApp = /** @class */ (function () {
     }
     MyApp.prototype.ValidaUsuario = function () {
         var _this = this;
-        this.nativestorage.getItem('Usuario').then(function (usr) {
+        this.nativestorage.get('Usuario').then(function (usr) {
             _this.Usuario = JSON.parse(usr);
             _this.logeado = true;
             //alert(JSON.stringify(this.Usuario)); 
@@ -356,13 +356,13 @@ var MyApp = /** @class */ (function () {
         }
     };
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/app/app.html"*/'<ion-menu [content]="content" >\n    <ion-header>\n      <ion-toolbar>\n            <ion-avatar  [hidden]="!logeado" item-start class="avatar">\n                <img src="assets/imgs/avatar.png">\n            </ion-avatar>\n            <ion-title [hidden]="!logeado">{{Usuario.Nombre}}</ion-title>\n            <ion-buttons end>\n                <button ion-button icon-only color="light" menuClose>\n                    <ion-icon name="close" ></ion-icon>\n                </button>\n            </ion-buttons>\n      </ion-toolbar>\n    </ion-header>\n    <ion-content>\n      <ion-list class="menu-buttons">\n        <button [hidden]="logeado" ion-item menuClose (click)="IniciarSesion()">\n              Iniciar sesion\n        </button>\n        <button ion-item menuClose (click)="Anunciar()">\n          Anunciar\n        </button>\n        <button ion-item menuClose (click)="MisAnuncios()">\n          Mis Anuncios\n        </button>\n        <button ion-item menuClose (click)="Mensajes()">\n          Mensajes\n        </button>\n        <button ion-item menuClose>\n          Ayuda\n        </button>\n        <button [hidden]="!logeado" ion-item menuClose (click)="CerrarSesion()">\n            Cerrar sesion\n      </button>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n\n<ion-nav #content [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\app\app.html"*/'<ion-menu [content]="content" >\n\n    <ion-header>\n\n      <ion-toolbar>\n\n            <ion-avatar  [hidden]="!logeado" item-start class="avatar">\n\n                <img src="assets/imgs/avatar.png">\n\n            </ion-avatar>\n\n            <ion-title [hidden]="!logeado">{{Usuario.Nombre}}</ion-title>\n\n            <ion-buttons end>\n\n                <button ion-button icon-only color="light" menuClose>\n\n                    <ion-icon name="close" ></ion-icon>\n\n                </button>\n\n            </ion-buttons>\n\n      </ion-toolbar>\n\n    </ion-header>\n\n    <ion-content>\n\n      <ion-list class="menu-buttons">\n\n        <button [hidden]="logeado" ion-item menuClose (click)="IniciarSesion()">\n\n              Iniciar sesion\n\n        </button>\n\n        <button ion-item menuClose (click)="Anunciar()">\n\n          Anunciar\n\n        </button>\n\n        <button ion-item menuClose (click)="MisAnuncios()">\n\n          Mis Anuncios\n\n        </button>\n\n        <button ion-item menuClose (click)="Mensajes()">\n\n          Mensajes\n\n        </button>\n\n        <button ion-item menuClose>\n\n          Ayuda\n\n        </button>\n\n        <button [hidden]="!logeado" ion-item menuClose (click)="CerrarSesion()">\n\n            Cerrar sesion\n\n      </button>\n\n      </ion-list>\n\n    </ion-content>\n\n  </ion-menu>\n\n\n\n<ion-nav #content [root]="rootPage"></ion-nav>\n\n\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_storage__["a" /* NativeStorage */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
     ], MyApp);
     return MyApp;
@@ -372,5 +372,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[283]);
+},[255]);
 //# sourceMappingURL=main.js.map

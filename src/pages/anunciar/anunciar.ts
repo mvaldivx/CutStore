@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController  } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
 import { Http } from '@angular/http';
+import * as firebase from 'Firebase';
 
 /**
  * Generated class for the AnunciarPage page.
@@ -139,8 +140,16 @@ export class AnunciarPage {
     if(this.activo ===true){
       activ =1;
     }
-    //aa
-    var link = "http://mauvalsa.com/CutStore/RegistrarPublicacion.php";
+
+    /*Comienza firebase*/
+    var idAnuncio = new Date();
+    var Nuevoanuncio = firebase.database().ref().child("Anuncios");
+    Nuevoanuncio.push({idUsuario: this.accountId,titulo: this.titulo,descripcion: this.desc,
+                      ubicacion: this.ubicacion,EntregaDom: domi,precio: this.precio, Estatus: activ, categoria: this.categoria,
+                    tipo: tipo,idAnuncio: idAnuncio.getTime()});
+    
+    /*Termina Firebase */
+    /*var link = "http://mauvalsa.com/CutStore/RegistrarPublicacion.php";
     var info = JSON.stringify({'accountid':this.accountId, 'titulo':this.titulo,'desc':this.desc,'ubicacion': this.ubicacion,
                               'dom': domi, 'precio':this.precio, 'activo':activ, 'cat': this.categoria, 'tipo': tipo, 'idAnuncio':this.idAnuncio});
     this.http.post(link, info)
@@ -148,6 +157,7 @@ export class AnunciarPage {
       response = data.json();
       if (response.success === true ){
         if (tipo == 1){
+          */
            //Guardar foto
          photoName = response.id;
          const FileTransfer: FileTransferObject = this.transfer.create();
@@ -178,7 +188,7 @@ export class AnunciarPage {
            loader.dismiss();
            //this.presentToast(err);
          });
-        }else{
+       /* }else{
           this.viewCtrl.dismiss({'response':1});
           loader.dismiss();
         }
@@ -191,7 +201,7 @@ export class AnunciarPage {
     },error =>{
       console.log(error);
       loader.dismiss();
-    });
+    });*/
 
     
   }

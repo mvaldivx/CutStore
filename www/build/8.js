@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 433:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnunciarPageModule", function() { return AnunciarPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArticuloPageModule", function() { return ArticuloPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__anunciar__ = __webpack_require__(442);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articulo__ = __webpack_require__(385);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AnunciarPageModule = /** @class */ (function () {
-    function AnunciarPageModule() {
+var ArticuloPageModule = /** @class */ (function () {
+    function ArticuloPageModule() {
     }
-    AnunciarPageModule = __decorate([
+    ArticuloPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__anunciar__["a" /* AnunciarPage */],
+                __WEBPACK_IMPORTED_MODULE_2__articulo__["a" /* ArticuloPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__anunciar__["a" /* AnunciarPage */]),
-            ],
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__articulo__["a" /* ArticuloPage */]),
+            ]
         })
-    ], AnunciarPageModule);
-    return AnunciarPageModule;
+    ], ArticuloPageModule);
+    return ArticuloPageModule;
 }());
 
-//# sourceMappingURL=anunciar.module.js.map
+//# sourceMappingURL=articulo.module.js.map
 
 /***/ }),
 
-/***/ 442:
+/***/ 385:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnunciarPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArticuloPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(139);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,190 +62,98 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * Generated class for the AnunciarPage page.
+ * Generated class for the ArticuloPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var AnunciarPage = /** @class */ (function () {
-    function AnunciarPage(navCtrl, navParams, viewCtrl, camera, transfer, file, loadingCtrl, http) {
+var ArticuloPage = /** @class */ (function () {
+    function ArticuloPage(navCtrl, navParams, nativestorage, modalCtrl, http, appCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.camera = camera;
-        this.transfer = transfer;
-        this.file = file;
-        this.loadingCtrl = loadingCtrl;
+        this.nativestorage = nativestorage;
+        this.modalCtrl = modalCtrl;
         this.http = http;
-        this.desc = "";
-        this.activo = false;
-        this.ubicacion = "";
-        this.dom = false;
-        this.precio = 0;
-        this.tipo = 1;
-        this.idAnuncio = 0;
-        this.accountId = this.navParams.get('accountId');
-        this.tipo = this.navParams.get('tipo');
-        if (this.tipo == 2) {
-            this.idAnuncio = this.navParams.get('idAnuncio');
-            this.ObtieneInfoAnuncio(this.idAnuncio);
+        this.appCtrl = appCtrl;
+        this.anuncio = {};
+        this.idAnuncio = "";
+        this.Usuario = {};
+        if (navParams.get("idAnuncio") === undefined) {
+            this.appCtrl.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+        }
+        else {
+            this.idAnuncio = navParams.get("idAnuncio");
+            this.ValidaUsuario();
+            this.ObtieneInfo();
         }
     }
-    AnunciarPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AnunciarPage');
+    ArticuloPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ArticuloPage');
     };
-    AnunciarPage.prototype.ObtieneInfoAnuncio = function (idAnuncio) {
+    ArticuloPage.prototype.ObtieneInfo = function () {
         var _this = this;
         var link = "http://mauvalsa.com/CutStore/ObtieneAnuncioInfo.php";
-        var info = JSON.stringify({ 'idAnuncio': idAnuncio });
+        var info = JSON.stringify({ 'idAnuncio': this.idAnuncio });
         this.http.post(link, info)
             .subscribe(function (data) {
-            var anuncio = data.json();
-            _this.titulo = anuncio.Titulo;
-            _this.categoria = anuncio.Tipo;
-            _this.desc = anuncio.Descripcion;
-            _this.activo = false;
-            if (anuncio.Estatus == 1) {
-                _this.activo = true;
-            }
-            _this.ubicacion = anuncio.Ubicacion;
-            _this.dom = false;
-            if (anuncio.EntregaDom == 1) {
-                _this.dom = true;
-            }
-            _this.imagesrc = "http://mauvalsa.com/CutStore/PhotosAnuncios/" + anuncio.idAnuncio + ".jpg";
-            _this.precio = anuncio.Precio;
-            //alert(JSON.stringify(anuncio));
+            _this.anuncio = data.json();
         }, function (error) {
             console.log(error);
         });
     };
-    AnunciarPage.prototype.close = function () {
-        this.viewCtrl.dismiss({ 'response': 0 });
+    ArticuloPage.prototype.atras = function () {
+        this.navCtrl.pop();
     };
-    AnunciarPage.prototype.LoadPhoto = function () {
-        var _this = this;
-        var options = {
-            quality: 100,
-            destinationType: this.camera.DestinationType.FILE_URI,
-            encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE
-        };
-        this.camera.getPicture(options).then(function (imageData) {
-            // imageData is either a base64 encoded string or a file URI
-            // If it's base64 (DATA_URL):
-            _this.imagesrc = 'data:image/jpeg;base64,' + imageData;
-        }, function (err) {
-            // Handle error
+    ArticuloPage.prototype.IniciarSesion = function () {
+        var data = "";
+        var options = { cssClass: 'modalPage' };
+        var modal = this.modalCtrl.create('InicioSesionPage', data);
+        modal.onDidDismiss(function (data) {
         });
+        modal.present();
     };
-    AnunciarPage.prototype.deGaleria = function () {
+    ArticuloPage.prototype.ValidaUsuario = function () {
         var _this = this;
-        var options = {
-            quality: 100,
-            destinationType: this.camera.DestinationType.DATA_URL,
-            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-            saveToPhotoAlbum: false,
-            allowEdit: true,
-            targetWidth: 375,
-            targetHeight: 375
-        };
-        this.camera.getPicture(options).then(function (imageData) {
-            // imageData is either a base64 encoded string or a file URI
-            // If it's base64 (DATA_URL):
-            _this.imagesrc = 'data:image/jpeg;base64,' + imageData;
+        this.nativestorage.get('Usuario').then(function (usr) {
+            //alert(JSON.stringify(usr));
+            _this.Usuario = JSON.parse(usr);
+            //alert(this.Usuario); 
         }, function (err) {
+            //alert(err);
             console.log(err);
-            // Handle error
         });
     };
-    AnunciarPage.prototype.publicar = function (tipo) {
-        var _this = this;
-        var loader = this.loadingCtrl.create();
-        loader.present();
-        var photoName;
-        var response = {};
-        var domi = 0;
-        if (this.dom === true) {
-            domi = 1;
+    ArticuloPage.prototype.enviarMensaje = function () {
+        //alert(this.Usuario.accountId);
+        if (!this.Usuario.accountId) {
+            alert("Parece que no estas registrado, es necesario iniciar sesion");
+            this.IniciarSesion();
         }
-        var activ = 0;
-        if (this.activo === true) {
-            activ = 1;
+        else {
+            var options = { cssClass: 'modalPage' };
+            var modal = this.modalCtrl.create('NuevoMensajePage', { accountId: this.Usuario.accountId, idAnuncio: this.idAnuncio });
+            modal.onDidDismiss(function (data) {
+                //alert(JSON.stringify(data));
+            });
+            modal.present();
         }
-        var link = "http://mauvalsa.com/CutStore/RegistrarPublicacion.php";
-        var info = JSON.stringify({ 'accountid': this.accountId, 'titulo': this.titulo, 'desc': this.desc, 'ubicacion': this.ubicacion,
-            'dom': domi, 'precio': this.precio, 'activo': activ, 'cat': this.categoria, 'tipo': tipo, 'idAnuncio': this.idAnuncio });
-        this.http.post(link, info)
-            .subscribe(function (data) {
-            response = data.json();
-            if (response.success === true) {
-                if (tipo == 1) {
-                    //Guardar foto
-                    photoName = response.id;
-                    var FileTransfer_1 = _this.transfer.create();
-                    var options = {
-                        fileKey: 'photo',
-                        fileName: photoName,
-                        chunkedMode: false,
-                        httpMethod: 'post',
-                        mimeType: 'image/jpeg',
-                        headers: {}
-                    };
-                    FileTransfer_1.upload(_this.imagesrc, 'http://mauvalsa.com/CutStore/subirfoto.php', options)
-                        .then(function (data) {
-                        var res = {};
-                        res = data;
-                        loader.dismiss();
-                        if (res.response = 1) {
-                            _this.viewCtrl.dismiss({ 'response': 1 });
-                        }
-                        else {
-                            _this.viewCtrl.dismiss({ 'response': 0 });
-                        }
-                        // success
-                        loader.dismiss;
-                    }, function (err) {
-                        // error
-                        alert(err);
-                        loader.dismiss();
-                        //this.presentToast(err);
-                    });
-                }
-                else {
-                    _this.viewCtrl.dismiss({ 'response': 1 });
-                    loader.dismiss();
-                }
-            }
-            else {
-                alert(JSON.stringify(response));
-                alert("Ocurrio un error");
-                loader.dismiss();
-            }
-        }, function (error) {
-            console.log(error);
-            loader.dismiss();
-        });
     };
-    AnunciarPage = __decorate([
+    ArticuloPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-anunciar',template:/*ion-inline-start:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/anunciar/anunciar.html"*/'<!--\n  Generated template for the AnunciarPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header no-border>\n    <ion-navbar transparent>\n      <ion-buttons end>\n        <button ion-button (click)="close()" class="btnCancelar" end>\n            <ion-icon name="close"></ion-icon>\n          </button>\n      </ion-buttons>\n        \n    </ion-navbar>\n    \n  </ion-header>\n  <ion-content >\n          \n    <img  [hidden]="imagesrc" class="imgsubir" src="assets/imgs/subirfoto.png" (click)="deGaleria()"/>\n    <img  src="{{imagesrc}}" class="loaded" />\n    <div>\n      <ion-list>\n          <ion-item>\n              <ion-label floating>Titulo</ion-label>\n              <ion-input type="text"  [(ngModel)]="titulo" name="titulo" id="titulo"></ion-input>\n          </ion-item>\n          <ion-item>\n                <ion-label floating>Descripcion</ion-label>\n                <ion-textarea [(ngModel)]="desc"  name="desc" id="desc"></ion-textarea>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Categoria</ion-label>\n              <ion-select [(ngModel)]="categoria" >\n                  <ion-option value="comida">Comida</ion-option>\n                  <ion-option value="accesorios">Accesorios</ion-option>\n                  <ion-option value="utiles">Utiles</ion-option>\n                  <ion-option value="ropa">Ropa</ion-option>\n                  <ion-option value="anuncios">Anuncios</ion-option>\n                </ion-select>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Ubicación</ion-label>\n              <ion-input type="text" [(ngModel)]="ubicacion"  name="ubicacion" id="ubicacion"></ion-input>\n          </ion-item><br>\n          <ion-item>\n              <ion-label >Entregas a domicilio?</ion-label>\n              <ion-toggle  checked="false" [(ngModel)]="dom"  name="dom" id="dom"></ion-toggle>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Precio</ion-label>\n              <ion-input type="number" [(ngModel)]="precio"  name="precio" id="precio"></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label >Estaras activo desde este momento?</ion-label>\n              <ion-toggle  checked="false" [(ngModel)]="activo"  name="activo" id="activo"></ion-toggle>\n          </ion-item>\n          <button *ngIf="tipo == 1" ion-button full class="btnIniciar" (click)="publicar(1);">Publicar</button>\n          <button *ngIf="tipo == 2" ion-button full class="btnIniciar" (click)="publicar(2);">Guardar</button>\n      </ion-list>\n      \n    </div>\n  </ion-content>\n'/*ion-inline-end:"/Users/mauriciovaldivia/Downloads/Ionic/CutStoreApp/src/pages/anunciar/anunciar.html"*/,
+            selector: 'page-articulo',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\articulo\articulo.html"*/'<!--\n\n  Generated template for the ArticuloPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header no-border>\n\n  <ion-toolbar transparent>\n\n    <ion-buttons start>\n\n      <button ion-button icon-only (click)="atras();">\n\n        <ion-icon name="arrow-back"></ion-icon>\n\n      </button>\n\n      </ion-buttons>\n\n      \n\n  </ion-toolbar>\n\n  \n\n</ion-header>\n\n<ion-content >\n\n        \n\n  <img  class="loaded" src="http://mauvalsa.com/CutStore/PhotosAnuncios/{{anuncio.idAnuncio}}.jpg"/>\n\n\n\n  <div class="titulo">\n\n    <h1>{{anuncio.Titulo}}</h1>\n\n  </div>\n\n  <div class="descripcion">\n\n    <h5>{{anuncio.Descripcion}}</h5>\n\n  </div>\n\n  \n\n  <div class="ubicacion" >\n\n    <h6 *ngIf="anuncio.Ubicacion != \'\'">Ubicacion: {{anuncio.Ubicacion}}</h6>\n\n  </div>\n\n  <div class="entregaDom" >\n\n    <h6 *ngIf="anuncio.EntregaDom == 1">Entrega a Domicilio: SI</h6>\n\n    <h6 *ngIf="anuncio.EntregaDom == 0">Entrega a Domicilio: NO</h6>\n\n  </div><br>\n\n  <div class="activo" [hidden]="anuncio.Estatus < 1" >\n\n    <h3>Activo ahora!!</h3>\n\n  </div><br>\n\n  <div class="precio" >\n\n    <h4>Precio: ${{anuncio.Precio}}</h4>\n\n  </div>\n\n\n\n \n\n</ion-content>\n\n<ion-footer>\n\n  <button ion-button full class="btnIniciar" (click)="enviarMensaje()" >Contactar al vendedor</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\articulo\articulo.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_http__["a" /* Http */]])
-    ], AnunciarPage);
-    return AnunciarPage;
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
+    ], ArticuloPage);
+    return ArticuloPage;
 }());
 
-//# sourceMappingURL=anunciar.js.map
+//# sourceMappingURL=articulo.js.map
 
 /***/ })
 

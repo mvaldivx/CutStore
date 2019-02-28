@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ModalOptions, App } from 'ionic-angular';
 import { Http } from '@angular/http';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 
 /**
@@ -23,7 +23,7 @@ export class ArticuloPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public nativestorage: NativeStorage,
+    public nativestorage: Storage,
     public modalCtrl: ModalController,
     public http: Http,
     public appCtrl: App
@@ -72,7 +72,7 @@ export class ArticuloPage {
 
 
    ValidaUsuario(){
-    this.nativestorage.getItem('Usuario').then(usr => {
+    this.nativestorage.get('Usuario').then((usr) => {
       //alert(JSON.stringify(usr));
       this.Usuario = JSON.parse(usr);
       //alert(this.Usuario); 
