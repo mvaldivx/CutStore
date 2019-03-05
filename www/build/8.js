@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 375:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArticuloPageModule", function() { return ArticuloPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articulo__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__articulo__ = __webpack_require__(386);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ArticuloPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 385:
+/***/ 386:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -107,7 +107,7 @@ var ArticuloPage = /** @class */ (function () {
     };
     ArticuloPage.prototype.IniciarSesion = function () {
         var data = "";
-        var options = { cssClass: 'modalPage' };
+        // let options: ModalOptions = { cssClass: 'modalPage' } 
         var modal = this.modalCtrl.create('InicioSesionPage', data);
         modal.onDidDismiss(function (data) {
         });
@@ -131,7 +131,7 @@ var ArticuloPage = /** @class */ (function () {
             this.IniciarSesion();
         }
         else {
-            var options = { cssClass: 'modalPage' };
+            //let options: ModalOptions = { cssClass: 'modalPage' } 
             var modal = this.modalCtrl.create('NuevoMensajePage', { accountId: this.Usuario.accountId, idAnuncio: this.idAnuncio });
             modal.onDidDismiss(function (data) {
                 //alert(JSON.stringify(data));

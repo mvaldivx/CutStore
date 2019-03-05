@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, ModalController, ModalOptions, ToastController, Alert } from 'ionic-angular';
+import { Platform, ModalController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -69,7 +69,7 @@ export class MyApp {
   IniciarSesion(){
     if (!modalP){
       let data = "";
-      let options: ModalOptions = { cssClass: 'modalPage' } 
+     // let options: ModalOptions = { cssClass: 'modalPage' } 
      let modal = this.modalCtrl.create('InicioSesionPage',data);
      modal.onDidDismiss(data => {
       modalP=false;
@@ -84,7 +84,7 @@ export class MyApp {
       alert("Parece que no estas registrado, es necesario iniciar sesion para publicar un anuncio");
       this.IniciarSesion();
     }else{
-      let options: ModalOptions = { cssClass: 'modalPage' } 
+      //let options: ModalOptions = { cssClass: 'modalPage' } 
       
      let modal = this.modalCtrl.create('AnunciarPage',{accountId: this.Usuario.accountId, usuario: this.Usuario.Nombre, tipo: 1});
      modal.onDidDismiss(data => {
@@ -117,7 +117,7 @@ export class MyApp {
       alert("Parece que no estas registrado, es necesario iniciar sesion");
       this.IniciarSesion();
     }else{
-     let options: ModalOptions = { cssClass: 'modalPage' } 
+     //let options: ModalOptions = { cssClass: 'modalPage' } 
      let modal = this.modalCtrl.create('MensajesPage',{accountId: this.Usuario.accountId, usuario: this.Usuario.Nombre});
      modal.onDidDismiss(data => {
     });
@@ -130,7 +130,7 @@ export class MyApp {
       alert("Parece que no estas registrado, es necesario iniciar sesion");
       this.IniciarSesion();
     }else{
-     let options: ModalOptions = { cssClass: 'modalPage' } 
+     //let options: ModalOptions = { cssClass: 'modalPage' } 
      let modal = this.modalCtrl.create('MisAnunciosPage',{accountId: this.Usuario.accountId, usuario: this.Usuario.Nombre});
      modal.onDidDismiss(data => {
     });

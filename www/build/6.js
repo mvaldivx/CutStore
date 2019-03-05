@@ -102,7 +102,7 @@ var MensajesPage = /** @class */ (function () {
         this.viewCtrl.dismiss();
     };
     MensajesPage.prototype.IniciaChat = function (idMensaje) {
-        var options = { cssClass: 'modalPage' };
+        //let options: ModalOptions = { cssClass: 'modalPage' } 
         var modal = this.modalCtrl.create('ChatPage', { idMensaje: idMensaje, accountId: this.AccountId, usuario: this.usuario });
         modal.onDidDismiss(function (data) {
         });

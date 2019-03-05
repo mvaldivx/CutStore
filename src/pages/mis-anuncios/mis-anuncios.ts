@@ -2,12 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController,  LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
-/**
- * Generated class for the MisAnunciosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import * as firebase from 'Firebase';
+
 
 @IonicPage()
 @Component({
@@ -16,7 +12,8 @@ import { Http } from '@angular/http';
 })
 export class MisAnunciosPage {
   anuncios:any=[];
- accountid="";
+  accountid="";
+  ref = firebase.database().ref('Anuncios/');
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -26,6 +23,11 @@ export class MisAnunciosPage {
     public loadingCtrl: LoadingController
     ) {
       this.accountid = this.navParams.get("accountId");
+
+      this.ref.on('value', resp => {
+        this.anuncios = [];
+        this.anuncios = GetAnuncios(resp);
+      });
   }
 
   ionViewDidLoad() {
@@ -60,3 +62,13 @@ export class MisAnunciosPage {
     modal.present();
   }
 }
+export const GetAnuncios = snapshot => {
+  let returnArr = [];
+  snapshot.forEach(childSnapshot => {
+          let item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          returnArr.push(item);
+      });
+
+      return returnArr;
+  };

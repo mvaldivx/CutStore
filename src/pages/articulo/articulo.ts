@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ModalOptions, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, App } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
@@ -62,7 +62,7 @@ export class ArticuloPage {
 
   IniciarSesion(){
       let data = "";
-      let options: ModalOptions = { cssClass: 'modalPage' } 
+     // let options: ModalOptions = { cssClass: 'modalPage' } 
      let modal = this.modalCtrl.create('InicioSesionPage',data);
      modal.onDidDismiss(data => {
       
@@ -90,7 +90,7 @@ export class ArticuloPage {
       alert("Parece que no estas registrado, es necesario iniciar sesion");
       this.IniciarSesion();
     }else{
-     let options: ModalOptions = { cssClass: 'modalPage' } 
+     //let options: ModalOptions = { cssClass: 'modalPage' } 
      
      let modal = this.modalCtrl.create('NuevoMensajePage',{accountId: this.Usuario.accountId, idAnuncio: this.idAnuncio});
      modal.onDidDismiss(data => {

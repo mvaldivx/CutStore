@@ -25999,6 +25999,14 @@ page-inicio-sesion ion-header .toolbar .btnCancelar {
   display: none;
 }
 
+.tumbnail {
+  width: 100%;
+}
+
+.tumbnail img {
+  width: 100%;
+}
+
 page-mensajes {
   font-family: 'Montserrat', sans-serif;
 }

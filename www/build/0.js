@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 377:
+/***/ 382:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PublicacionesPageModule", function() { return PublicacionesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__publicaciones__ = __webpack_require__(392);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ChatPageModule = /** @class */ (function () {
-    function ChatPageModule() {
+var PublicacionesPageModule = /** @class */ (function () {
+    function PublicacionesPageModule() {
     }
-    ChatPageModule = __decorate([
+    PublicacionesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
+                __WEBPACK_IMPORTED_MODULE_2__publicaciones__["a" /* PublicacionesPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__publicaciones__["a" /* PublicacionesPage */]),
             ],
         })
-    ], ChatPageModule);
-    return ChatPageModule;
+    ], PublicacionesPageModule);
+    return PublicacionesPageModule;
 }());
 
-//# sourceMappingURL=chat.module.js.map
+//# sourceMappingURL=publicaciones.module.js.map
 
 /***/ }),
 
@@ -180,15 +180,18 @@ module.exports = firebase;
 
 /***/ }),
 
-/***/ 387:
+/***/ 392:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PublicacionesPage; });
+/* unused harmony export GetAnuncios */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Firebase__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_Firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_Firebase__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_Firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_Firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -201,75 +204,77 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the ChatPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var ChatPage = /** @class */ (function () {
-    function ChatPage(navCtrl, navParams, viewCtrl) {
+
+
+var PublicacionesPage = /** @class */ (function () {
+    function PublicacionesPage(navCtrl, navParams, http, loadingCtrl, appCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.userName = "";
-        this.message = "";
-        this.messages = [];
-        this.idMensaje = -1;
-        this.usuario = "";
-        this.accountId = "";
-        this.idMensaje = this.navParams.get("idMensaje");
-        this.usuario = this.navParams.get("usuario");
-        this.accountId = this.navParams.get("accountId");
-        this.ObtenerMensajes();
+        this.http = http;
+        this.loadingCtrl = loadingCtrl;
+        this.appCtrl = appCtrl;
+        this.anuncios = [];
+        this.ref = __WEBPACK_IMPORTED_MODULE_4_Firebase__["database"]().ref('Anuncios/');
+        this.infoPage = { titulo: String, img: String };
+        if (navParams.get("titulo") === undefined) {
+            this.appCtrl.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        }
+        else {
+            this.infoPage = { titulo: navParams.get("titulo"), img: navParams.get("imag") };
+            var loader = this.loadingCtrl.create();
+            loader.present();
+            this.ref.on('value', function (resp) {
+                _this.anuncios = [];
+                _this.anuncios = GetAnuncios(resp);
+            });
+            //this.ObtieneAnuncios();
+            loader.dismiss();
+        }
     }
-    ChatPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ChatPage');
+    PublicacionesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PublicacionesPage');
     };
-    ChatPage.prototype.atras = function () {
-        this.viewCtrl.dismiss();
+    PublicacionesPage.prototype.atras = function () {
+        this.navCtrl.pop();
     };
-    ChatPage.prototype.ObtenerMensajes = function () {
+    PublicacionesPage.prototype.ObtieneAnuncios = function () {
         var _this = this;
-        var Mensajes = __WEBPACK_IMPORTED_MODULE_2_Firebase__["database"]().ref().child("mensajes");
-        Mensajes.on("value", function (snap) {
-            var data = snap.val();
-            _this.messages = [];
-            for (var key in data) {
-                if (data[key].idMensaje == _this.idMensaje) {
-                    _this.messages.push(data[key]);
-                    _this.scrollToBottom();
-                }
-            }
+        var link = "http://mauvalsa.com/CutStore/ObtieneAnuncios.php";
+        var info = JSON.stringify({ 'tipo': this.infoPage.titulo });
+        this.http.post(link, info)
+            .subscribe(function (data) {
+            _this.anuncios = data.json();
+        }, function (err) {
+            console.log(err);
         });
     };
-    ChatPage.prototype.scrollToBottom = function () {
-        if (document.getElementById("end") != null) {
-            var contentend = document.getElementById("end").offsetTop;
-            this.content.scrollTo(0, contentend, 300);
-        }
+    PublicacionesPage.prototype.MasInfo = function (idAnuncio) {
+        this.navCtrl.push('ArticuloPage', { idAnuncio: idAnuncio });
     };
-    ChatPage.prototype.EnviarMensaje = function () {
-        var Mensajes = __WEBPACK_IMPORTED_MODULE_2_Firebase__["database"]().ref().child("mensajes");
-        Mensajes.push({ idMensaje: this.idMensaje, idUsuario: this.accountId, mensaje: this.message, nombreU: this.usuario });
-        this.message = "";
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("content"),
-        __metadata("design:type", Object)
-    ], ChatPage.prototype, "content", void 0);
-    ChatPage = __decorate([
+    PublicacionesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-chat',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\chat\chat.html"*/'<!--\n\n  Generated template for the ChatPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{Usuario}}</ion-title>\n\n    <ion-buttons start>\n\n        <button ion-button icon-only (click)="atras();" class="btnCancelar">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n        </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content #content padding>\n\n    <!-- <ion-card > -->\n\n      <div class="chatBubble" *ngFor="let message of messages">\n\n        <div class="chat-bubble" [ngClass]="(message.idUsuario == accountId) ? \'chat-bubble right\' : \'chat-bubble left\'">\n\n            <span style="font-weight:bold;">{{message.nombreU}} : </span>\n\n          <div class="message"> {{message.mensaje}} </div>\n\n            <div class="message-detail">\n\n                \n\n                <!--<span>{{msg.time}}</span>-->\n\n            </div>\n\n        </div>\n\n      </div>\n\n       <!-- <ion-card-header>\n\n          {{message.nombreU}} dice:\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          {{message.mensaje}}\n\n        </ion-card-content>\n\n      </ion-card>\n\n    -->\n\n      <div id="end"></div>\n\n    \n\n</ion-content>\n\n<ion-footer>\n\n    <ion-toolbar>\n\n      <ion-input placeholder="Escribe algo..." [(ngModel)]="message"></ion-input>\n\n      <ion-buttons end>\n\n        <button ion-button icon-right class="btnCancelar" (click)="EnviarMensaje()">\n\n           \n\n          <ion-icon name="send"></ion-icon>\n\n        </button>\n\n      </ion-buttons>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n  \n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\chat\chat.html"*/,
+            selector: 'page-publicaciones',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\publicaciones\publicaciones.html"*/'<!--\n\n  Generated template for the PublicacionesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header class="has-header">\n\n  <ion-toolbar class="card-background-page">\n\n        <ion-card>\n\n          <img src={{infoPage.img}}/>\n\n        </ion-card>\n\n        <div class="titulo" >{{infoPage.titulo}}</div>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-header>\n\n<ion-toolbar>\n\n    <ion-buttons start>\n\n        <button ion-button icon-only (click)="atras();">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n        </ion-buttons>\n\n  <ion-title>\n\n      <img class="logo" src="assets/imgs/logo1.png">\n\n  </ion-title>\n\n  \n\n</ion-toolbar>\n\n</ion-header>\n\n\n\n\n\n\n\n\n\n\n\n<ion-content padding>\n\n<ion-list>\n\n <ion-item *ngFor="let an of anuncios" >\n\n    <ion-thumbnail item-start >\n\n      <img class="imgAnuncio" src="http://mauvalsa.com/CutStore/PhotosAnuncios/{{an.idAnuncio}}.jpg">\n\n    </ion-thumbnail>\n\n    <h2>{{an.Titulo}}</h2>\n\n    <p>{{an.Descripcion}}</p>\n\n    <button ion-button clear item-end (click)="MasInfo(an.idAnuncio)" >Mas Info</button>\n\n  </ion-item>\n\n\n\n</ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\publicaciones\publicaciones.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */]])
-    ], ChatPage);
-    return ChatPage;
+            __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
+    ], PublicacionesPage);
+    return PublicacionesPage;
 }());
 
-//# sourceMappingURL=chat.js.map
+var GetAnuncios = function (snapshot) {
+    var returnArr = [];
+    snapshot.forEach(function (childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        returnArr.push(item);
+    });
+    return returnArr;
+};
+//# sourceMappingURL=publicaciones.js.map
 
 /***/ })
 

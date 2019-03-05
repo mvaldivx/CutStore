@@ -1,14 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 381:
+/***/ 383:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NuevoMensajePageModule", function() { return NuevoMensajePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistrarUsuarioPageModule", function() { return RegistrarUsuarioPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nuevo_mensaje__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registrar_usuario__ = __webpack_require__(393);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var NuevoMensajePageModule = /** @class */ (function () {
-    function NuevoMensajePageModule() {
+var RegistrarUsuarioPageModule = /** @class */ (function () {
+    function RegistrarUsuarioPageModule() {
     }
-    NuevoMensajePageModule = __decorate([
+    RegistrarUsuarioPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__nuevo_mensaje__["a" /* NuevoMensajePage */],
+                __WEBPACK_IMPORTED_MODULE_2__registrar_usuario__["a" /* RegistrarUsuarioPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__nuevo_mensaje__["a" /* NuevoMensajePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__registrar_usuario__["a" /* RegistrarUsuarioPage */]),
             ],
         })
-    ], NuevoMensajePageModule);
-    return NuevoMensajePageModule;
+    ], RegistrarUsuarioPageModule);
+    return RegistrarUsuarioPageModule;
 }());
 
-//# sourceMappingURL=nuevo-mensaje.module.js.map
+//# sourceMappingURL=registrar-usuario.module.js.map
 
 /***/ }),
 
-/***/ 391:
+/***/ 393:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NuevoMensajePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegistrarUsuarioPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(138);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,59 +60,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the NuevoMensajePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var NuevoMensajePage = /** @class */ (function () {
-    function NuevoMensajePage(navCtrl, navParams, viewCtrl, http) {
+var RegistrarUsuarioPage = /** @class */ (function () {
+    function RegistrarUsuarioPage(navCtrl, navParams, http, nativestorage, viewCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
         this.http = http;
-        this.mensaje = "";
-        this.idAnuncio = this.navParams.get('idAnuncio');
-        this.accountId = this.navParams.get('accountId');
+        this.nativestorage = nativestorage;
+        this.viewCtrl = viewCtrl;
+        this.response = {};
+        this.userInf = {};
+        this.userInf = this.navParams.get('userInfo');
     }
-    NuevoMensajePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad NuevoMensajePage');
+    RegistrarUsuarioPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RegistrarUsuarioPage');
     };
-    NuevoMensajePage.prototype.close = function () {
-        this.viewCtrl.dismiss();
-    };
-    NuevoMensajePage.prototype.EnviarMensaje = function () {
+    RegistrarUsuarioPage.prototype.RegistrarUsuario = function (nom) {
         var _this = this;
-        //alert(this.accountId);
-        var result = {};
-        var link = "http://mauvalsa.com/CutStore/NuevoMensaje.php";
-        var info = JSON.stringify({ 'idAnuncio': this.idAnuncio, 'accountId': this.accountId });
+        var link = "http://mauvalsa.com/CutStore/RegistrarUsuario.php";
+        var info = JSON.stringify({ 'accountid': this.userInf.accountId, 'tel': this.userInf.phoneNumber,
+            'nombre': nom });
         this.http.post(link, info)
             .subscribe(function (data) {
-            result = data.json();
-            if (result.Existe == 1) {
-                var Mensajes = __WEBPACK_IMPORTED_MODULE_3_firebase__["database"]().ref().child("mensajes");
-                Mensajes.push({ idMensaje: result.idMensaje, mensaje: _this.mensaje, idUsuario: _this.accountId, nombreU: result.nombre });
+            _this.response = data.json();
+            if (_this.response.success === true) {
+                _this.nativestorage.set('Usuario', JSON.stringify({ 'accountId': _this.userInf.accountId, 'Telefono': _this.userInf.phoneNumber, 'Nombre': _this.response.nombre }));
                 _this.viewCtrl.dismiss();
+                location.reload();
+            }
+            else {
+                alert("ocurrio un error");
             }
         }, function (error) {
             console.log(error);
         });
     };
-    NuevoMensajePage = __decorate([
+    RegistrarUsuarioPage.prototype.close = function () {
+        this.viewCtrl.dismiss();
+    };
+    RegistrarUsuarioPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-nuevo-mensaje',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\nuevo-mensaje\nuevo-mensaje.html"*/'<!--\n\n  Generated template for the NuevoMensajePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Escribir Mensaje</ion-title>\n\n    <ion-buttons end>\n\n        <button ion-button (click)="close()" class="btnCancelar" end>\n\n            <ion-icon name="close"></ion-icon>\n\n          </button>\n\n      </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <ion-toolbar>\n\n      <ion-input placeholder="Escribe algo..." [(ngModel)]="mensaje"></ion-input>\n\n      <ion-buttons end>\n\n        <button ion-button icon-right (click)="EnviarMensaje()" class="btnCancelar">\n\n          <ion-icon name="send"></ion-icon>\n\n        </button>\n\n      </ion-buttons>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n  \n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\nuevo-mensaje\nuevo-mensaje.html"*/,
+            selector: 'page-registrar-usuario',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\registrar-usuario\registrar-usuario.html"*/'<!--\n\n  Generated template for the RegistrarUsuarioPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header no-border>\n\n    <ion-navbar transparent>\n\n      <ion-buttons end>\n\n        <button ion-button (click)="close()" class="btnCancelar" end>\n\n            <ion-icon name="close"></ion-icon>\n\n          </button>\n\n      </ion-buttons>\n\n        \n\n    </ion-navbar>\n\n    \n\n  </ion-header>\n\n<ion-content >\n\n        \n\n  <img src="assets/imgs/Cut1.png"/>\n\n    <div>\n\n        <ion-item>\n\n            <ion-label>Ingrese su nombre</ion-label>\n\n            <ion-input type="text" #nombre name="nombre" id="nombre"></ion-input>\n\n          </ion-item>\n\n      <button ion-button full class="btnIniciar" (click)="RegistrarUsuario(nombre.value);">Registrarse</button>\n\n    </div>\n\n</ion-content>\n\n\n\n\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\registrar-usuario\registrar-usuario.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
-    ], NuevoMensajePage);
-    return NuevoMensajePage;
+            __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */]])
+    ], RegistrarUsuarioPage);
+    return RegistrarUsuarioPage;
 }());
 
-//# sourceMappingURL=nuevo-mensaje.js.map
+//# sourceMappingURL=registrar-usuario.js.map
 
 /***/ })
 

@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ɵConsole } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController  } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { File } from '@ionic-native/file/ngx';
 import { Http } from '@angular/http';
 import * as firebase from 'Firebase';
 
@@ -31,13 +30,13 @@ export class AnunciarPage {
   precio=0;
   tipo=1;
   idAnuncio=0;
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private camera: Camera,
     private transfer: FileTransfer,
-    private file: File,
     private loadingCtrl: LoadingController,
     private http: Http
     ) {
@@ -144,10 +143,53 @@ export class AnunciarPage {
     /*Comienza firebase*/
     var idAnuncio = new Date();
     var Nuevoanuncio = firebase.database().ref().child("Anuncios");
-    Nuevoanuncio.push({idUsuario: this.accountId,titulo: this.titulo,descripcion: this.desc,
-                      ubicacion: this.ubicacion,EntregaDom: domi,precio: this.precio, Estatus: activ, categoria: this.categoria,
-                    tipo: tipo,idAnuncio: idAnuncio.getTime()});
+    Nuevoanuncio.push({idUsuario: this.accountId,Titulo: this.titulo,Descripcion: this.desc,
+                      Ubicacion: this.ubicacion,EntregaDom: domi,Precio: this.precio, Estatus: activ, Categoria: this.categoria,
+                    Tipo: tipo,idAnuncio: idAnuncio.getTime()});
     
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+
+    
+    var imagesRef = storageRef.child('images');
+    // Child references can also take paths delimited by '/'
+    var spaceRef = storageRef.child('images');
+    var fileName = idAnuncio.getTime() + '.jpg'
+    var spaceRef = imagesRef.child(fileName);
+    var path = spaceRef.fullPath
+    var name = spaceRef.name
+    var imagesRef = spaceRef.parent;
+    var metadata = {
+      contentType: 'image/jpeg'
+    };
+
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    var uploadTask = storageRef.child('images/' + fileName).put(this.imagesrc, metadata);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+      function(snapshot) {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        //var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        //console.log('Upload is ' + progress + '% done');
+       /* switch (snapshot.state) {
+          case firebase.storage.TaskState.PAUSED: // or 'paused'
+            console.log('Upload is paused');
+            break;
+          case firebase.storage.TaskState.RUNNING: // or 'running'
+            console.log('Upload is running');
+            break;
+        }*/
+      }, function(error) {
+        alert(error)
+      }, function() {
+        // Upload completed successfully, now we can get the download URL
+        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+          alert(downloadURL);
+        });
+      });
+
+
     /*Termina Firebase */
     /*var link = "http://mauvalsa.com/CutStore/RegistrarPublicacion.php";
     var info = JSON.stringify({'accountid':this.accountId, 'titulo':this.titulo,'desc':this.desc,'ubicacion': this.ubicacion,
@@ -159,7 +201,7 @@ export class AnunciarPage {
         if (tipo == 1){
           */
            //Guardar foto
-         photoName = response.id;
+        /* photoName = response.id;
          const FileTransfer: FileTransferObject = this.transfer.create();
          
          let options: FileUploadOptions = {
@@ -187,7 +229,7 @@ export class AnunciarPage {
            alert(err);
            loader.dismiss();
            //this.presentToast(err);
-         });
+         });*/
        /* }else{
           this.viewCtrl.dismiss({'response':1});
           loader.dismiss();

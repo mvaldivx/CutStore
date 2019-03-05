@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, ModalOptions, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 /**
@@ -58,7 +58,7 @@ export class MensajesPage {
   }
 
   IniciaChat(idMensaje){
-    let options: ModalOptions = { cssClass: 'modalPage' } 
+    //let options: ModalOptions = { cssClass: 'modalPage' } 
      let modal = this.modalCtrl.create('ChatPage',{idMensaje: idMensaje, accountId: this.AccountId, usuario: this.usuario});
      modal.onDidDismiss(data => {
       

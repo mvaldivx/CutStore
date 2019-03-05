@@ -64,16 +64,16 @@ webpackEmptyAsyncContext.id = 148;
 
 var map = {
 	"../pages/anunciar/anunciar.module": [
-		376,
-		1
+		375,
+		3
 	],
 	"../pages/articulo/articulo.module": [
-		375,
+		376,
 		8
 	],
 	"../pages/chat/chat.module": [
 		377,
-		0
+		2
 	],
 	"../pages/inicio-sesion/inicio-sesion.module": [
 		378,
@@ -85,19 +85,19 @@ var map = {
 	],
 	"../pages/mis-anuncios/mis-anuncios.module": [
 		380,
-		5
+		1
 	],
 	"../pages/nuevo-mensaje/nuevo-mensaje.module": [
 		381,
-		4
+		5
 	],
 	"../pages/publicaciones/publicaciones.module": [
 		382,
-		3
+		0
 	],
 	"../pages/registrar-usuario/registrar-usuario.module": [
 		383,
-		2
+		4
 	]
 };
 function webpackAsyncContext(req) {
@@ -116,13 +116,13 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 255:
+/***/ 254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(277);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -130,7 +130,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 278:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -144,7 +144,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera_ngx__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer_ngx__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_ngx__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_ngx__ = __webpack_require__(373);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(374);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(139);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -178,8 +178,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/articulo/articulo.module#ArticuloPageModule', name: 'ArticuloPage', segment: 'articulo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/anunciar/anunciar.module#AnunciarPageModule', name: 'AnunciarPage', segment: 'anunciar', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/articulo/articulo.module#ArticuloPageModule', name: 'ArticuloPage', segment: 'articulo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio-sesion/inicio-sesion.module#InicioSesionPageModule', name: 'InicioSesionPage', segment: 'inicio-sesion', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mensajes/mensajes.module#MensajesPageModule', name: 'MensajesPage', segment: 'mensajes', priority: 'low', defaultHistory: [] },
@@ -225,7 +225,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -292,7 +292,7 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.IniciarSesion = function () {
         if (!modalP) {
             var data = "";
-            var options = { cssClass: 'modalPage' };
+            // let options: ModalOptions = { cssClass: 'modalPage' } 
             var modal = this.modalCtrl.create('InicioSesionPage', data);
             modal.onDidDismiss(function (data) {
                 modalP = false;
@@ -308,7 +308,7 @@ var MyApp = /** @class */ (function () {
             this.IniciarSesion();
         }
         else {
-            var options = { cssClass: 'modalPage' };
+            //let options: ModalOptions = { cssClass: 'modalPage' } 
             var modal = this.modalCtrl.create('AnunciarPage', { accountId: this.Usuario.accountId, usuario: this.Usuario.Nombre, tipo: 1 });
             modal.onDidDismiss(function (data) {
                 //alert(JSON.stringify(data));
@@ -335,7 +335,7 @@ var MyApp = /** @class */ (function () {
             this.IniciarSesion();
         }
         else {
-            var options = { cssClass: 'modalPage' };
+            //let options: ModalOptions = { cssClass: 'modalPage' } 
             var modal = this.modalCtrl.create('MensajesPage', { accountId: this.Usuario.accountId, usuario: this.Usuario.Nombre });
             modal.onDidDismiss(function (data) {
             });
@@ -348,7 +348,7 @@ var MyApp = /** @class */ (function () {
             this.IniciarSesion();
         }
         else {
-            var options = { cssClass: 'modalPage' };
+            //let options: ModalOptions = { cssClass: 'modalPage' } 
             var modal = this.modalCtrl.create('MisAnunciosPage', { accountId: this.Usuario.accountId, usuario: this.Usuario.Nombre });
             modal.onDidDismiss(function (data) {
             });
@@ -372,5 +372,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[255]);
+},[254]);
 //# sourceMappingURL=main.js.map

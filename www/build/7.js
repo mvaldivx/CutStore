@@ -86,20 +86,26 @@ var InicioSesionPage = /** @class */ (function () {
     };
     InicioSesionPage.prototype.register = function () {
         var _this = this;
-        window.AccountKitPlugin.loginWithPhoneNumber({
-            useAccessToken: true,
-            defaultCountryCode: "MX",
-            facebookNotificationsEnabled: true,
-        }, function (successdata) {
-            window.AccountKitPlugin.getAccount(function (user) {
-                //alert(JSON.stringify(user));
-                _this.userInfo = user;
-                _this.registrado = true;
-                _this.ValidaUsuario();
+        this.nativestorage.set('Usuario', JSON.stringify({ 'accountId': 12345, 'Telefono': 123456, 'Nombre': 'Nombre' })).then(function (success) {
+            _this.nativestorage.get('Usuario').then(function (usr) {
             });
-        }, function (err) {
-            //alert(err);
         });
+        this.viewCtrl.dismiss();
+        location.reload();
+        /*(<any>window).AccountKitPlugin.loginWithPhoneNumber({
+          useAccessToken: true,
+          defaultCountryCode: "MX",
+          facebookNotificationsEnabled: true,
+        }, (successdata) => {
+        (<any>window).AccountKitPlugin.getAccount((user)=>{
+          //alert(JSON.stringify(user));
+          this.userInfo = user;
+          this.registrado=true;
+          this.ValidaUsuario();
+        })
+      },(err)=>{
+          //alert(err);
+        });*/
     };
     InicioSesionPage.prototype.ValidaUsuario = function () {
         var _this = this;
@@ -129,7 +135,7 @@ var InicioSesionPage = /** @class */ (function () {
     };
     InicioSesionPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-inicio-sesion',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\inicio-sesion\inicio-sesion.html"*/'<!--\n\n  Generated template for the InicioSesionPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header no-border>\n\n  <ion-navbar transparent>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="close()" class="btnCancelar" end>\n\n          <ion-icon name="close"></ion-icon>\n\n        </button>\n\n    </ion-buttons>\n\n      \n\n  </ion-navbar>\n\n  \n\n</ion-header>\n\n<ion-content >\n\n        \n\n  <img src="assets/imgs/Cut1.png"/>\n\n  <div>\n\n    <button ion-button full class="btnIniciar" (click)="register();">Iniciar Sesion</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\inicio-sesion\inicio-sesion.html"*/,
+            selector: 'page-inicio-sesion',template:/*ion-inline-start:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\inicio-sesion\inicio-sesion.html"*/'<!--\n\n  Generated template for the InicioSesionPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header no-border>\n\n  <ion-navbar transparent>\n\n    <ion-buttons end>\n\n      <button ion-button (click)="close()" class="btnCancelar" end>\n\n          <ion-icon name="close"></ion-icon>\n\n        </button>\n\n    </ion-buttons>\n\n      \n\n  </ion-navbar>\n\n  \n\n</ion-header>\n\n<ion-content >\n\n  <div class="tumbnail">\n\n    <img src="assets/imgs/Cut1.png"/>\n\n  </div>\n\n  \n\n  <div>\n\n    <button ion-button full class="btnIniciar" (click)="register();">Iniciar Sesion</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\mavaldivia\Documents\Ionic\CutStore\src\pages\inicio-sesion\inicio-sesion.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],

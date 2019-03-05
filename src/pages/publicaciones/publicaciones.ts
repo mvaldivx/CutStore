@@ -1,16 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, LoadingController } from 'ionic-angular';
-import {ArticuloPage} from '../articulo/articulo';
 import { Http } from '@angular/http';
-import { map } from 'rxjs/operators';
 import { HomePage } from '../home/home';
 
-/**
- * Generated class for the PublicacionesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import * as firebase from 'Firebase';
+
 
 @IonicPage()
 @Component({
@@ -20,7 +14,7 @@ import { HomePage } from '../home/home';
 export class PublicacionesPage {
   rootPage: any;
   anuncios:any =[];
-
+  ref = firebase.database().ref('Anuncios/');
   public infoPage = {titulo:String, img:String};
   constructor(
     public navCtrl: NavController,
@@ -35,12 +29,15 @@ export class PublicacionesPage {
         this.infoPage ={titulo:navParams.get("titulo"),img:navParams.get("imag")};
         let loader = this.loadingCtrl.create();
           loader.present();
-        this.ObtieneAnuncios();
+          this.ref.on('value', resp => {
+            this.anuncios = [];
+            this.anuncios = GetAnuncios(resp);
+          });
+        //this.ObtieneAnuncios();
         loader.dismiss();
       }
     
-    
-    console.log(this.infoPage);
+      
   }
 
   ionViewDidLoad() {
@@ -73,3 +70,13 @@ export class PublicacionesPage {
   }
 
 }
+export const GetAnuncios = snapshot => {
+  let returnArr = [];
+  snapshot.forEach(childSnapshot => {
+          let item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          returnArr.push(item);
+      });
+
+      return returnArr;
+  };
