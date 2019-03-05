@@ -39,7 +39,16 @@ export class InicioSesionPage {
   }
 
   register(){
-    (<any>window).AccountKitPlugin.loginWithPhoneNumber({
+
+    this.nativestorage.set('Usuario',JSON.stringify({'accountId':12345, 'Telefono':123456, 'Nombre':'Nombre'})).then(
+      (success)=>{
+      this.nativestorage.get('Usuario').then((usr) => {
+      });
+    });
+    this.viewCtrl.dismiss();
+    location.reload();
+
+    /*(<any>window).AccountKitPlugin.loginWithPhoneNumber({
       useAccessToken: true,
       defaultCountryCode: "MX",
       facebookNotificationsEnabled: true,
@@ -52,7 +61,7 @@ export class InicioSesionPage {
     })
   },(err)=>{
       //alert(err);
-    });
+    });*/
   }
 
   ValidaUsuario(){
