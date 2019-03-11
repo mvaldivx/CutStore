@@ -86,7 +86,7 @@ var InicioSesionPage = /** @class */ (function () {
     };
     InicioSesionPage.prototype.register = function () {
         var _this = this;
-        this.nativestorage.set('Usuario', JSON.stringify({ 'accountId': 12345, 'Telefono': 123456, 'Nombre': 'Nombre' })).then(function (success) {
+        this.nativestorage.set('Usuario', JSON.stringify({ 'accountId': 12345, 'Telefono': 123456, 'Nombre': 'Mauricio' })).then(function (success) {
             _this.nativestorage.get('Usuario').then(function (usr) {
             });
         });

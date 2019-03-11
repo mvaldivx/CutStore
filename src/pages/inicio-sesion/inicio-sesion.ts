@@ -40,7 +40,7 @@ export class InicioSesionPage {
 
   register(){
 
-    this.nativestorage.set('Usuario',JSON.stringify({'accountId':12345, 'Telefono':123456, 'Nombre':'Nombre'})).then(
+    this.nativestorage.set('Usuario',JSON.stringify({'accountId':12345, 'Telefono':123456, 'Nombre':'Mauricio'})).then(
       (success)=>{
       this.nativestorage.get('Usuario').then((usr) => {
       });

@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 375:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnunciarPageModule", function() { return AnunciarPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__anunciar__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__anunciar__ = __webpack_require__(386);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -180,7 +180,7 @@ module.exports = firebase;
 
 /***/ }),
 
-/***/ 385:
+/***/ 386:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -323,42 +323,18 @@ var AnunciarPage = /** @class */ (function () {
         Nuevoanuncio.push({ idUsuario: this.accountId, Titulo: this.titulo, Descripcion: this.desc,
             Ubicacion: this.ubicacion, EntregaDom: domi, Precio: this.precio, Estatus: activ, Categoria: this.categoria,
             Tipo: tipo, idAnuncio: idAnuncio.getTime() });
-        var storage = __WEBPACK_IMPORTED_MODULE_5_Firebase__["storage"]();
-        var storageRef = storage.ref();
-        var imagesRef = storageRef.child('images');
-        // Child references can also take paths delimited by '/'
-        var spaceRef = storageRef.child('images');
         var fileName = idAnuncio.getTime() + '.jpg';
-        var spaceRef = imagesRef.child(fileName);
-        var path = spaceRef.fullPath;
-        var name = spaceRef.name;
-        var imagesRef = spaceRef.parent;
-        var metadata = {
-            contentType: 'image/jpeg'
-        };
+        var storage = __WEBPACK_IMPORTED_MODULE_5_Firebase__["storage"]().ref('images/' + fileName);
         // Upload file and metadata to the object 'images/mountains.jpg'
-        var uploadTask = storageRef.child('images/' + fileName).put(this.imagesrc, metadata);
-        // Listen for state changes, errors, and completion of the upload.
-        uploadTask.on(__WEBPACK_IMPORTED_MODULE_5_Firebase__["storage"].TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function (snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            //var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //console.log('Upload is ' + progress + '% done');
-            /* switch (snapshot.state) {
-               case firebase.storage.TaskState.PAUSED: // or 'paused'
-                 console.log('Upload is paused');
-                 break;
-               case firebase.storage.TaskState.RUNNING: // or 'running'
-                 console.log('Upload is running');
-                 break;
-             }*/
-        }, function (error) {
-            alert(error);
+        var uploadTask = storage.put(this.imagesrc);
+        uploadTask.on("state_changed", function (_snap) {
+            console.log("progess " +
+                (_snap.bytesTransferred / _snap.totalBytes) * 100);
+        }, function (_error) {
+            console.log(_error);
         }, function () {
-            // Upload completed successfully, now we can get the download URL
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                alert(downloadURL);
-            });
+            // completion...
+            //resolve(uploadTask.snapshot);
         });
         /*Termina Firebase */
         /*var link = "http://mauvalsa.com/CutStore/RegistrarPublicacion.php";

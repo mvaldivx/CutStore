@@ -48,8 +48,11 @@ export class MyApp {
 
   ValidaUsuario(){
     this.nativestorage.get('Usuario').then((usr) => {
-      this.Usuario = JSON.parse(usr);
-      this.logeado= true;
+      if(usr != null){
+          this.Usuario = JSON.parse(usr);
+          this.logeado= true;
+      }
+      
       //alert(JSON.stringify(this.Usuario)); 
     },err =>{
       this.logeado= false;

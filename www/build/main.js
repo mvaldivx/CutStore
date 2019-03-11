@@ -64,11 +64,11 @@ webpackEmptyAsyncContext.id = 148;
 
 var map = {
 	"../pages/anunciar/anunciar.module": [
-		375,
+		376,
 		3
 	],
 	"../pages/articulo/articulo.module": [
-		376,
+		375,
 		8
 	],
 	"../pages/chat/chat.module": [
@@ -178,8 +178,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/anunciar/anunciar.module#AnunciarPageModule', name: 'AnunciarPage', segment: 'anunciar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/articulo/articulo.module#ArticuloPageModule', name: 'ArticuloPage', segment: 'articulo', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/anunciar/anunciar.module#AnunciarPageModule', name: 'AnunciarPage', segment: 'anunciar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio-sesion/inicio-sesion.module#InicioSesionPageModule', name: 'InicioSesionPage', segment: 'inicio-sesion', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mensajes/mensajes.module#MensajesPageModule', name: 'MensajesPage', segment: 'mensajes', priority: 'low', defaultHistory: [] },
@@ -273,8 +273,10 @@ var MyApp = /** @class */ (function () {
     MyApp.prototype.ValidaUsuario = function () {
         var _this = this;
         this.nativestorage.get('Usuario').then(function (usr) {
-            _this.Usuario = JSON.parse(usr);
-            _this.logeado = true;
+            if (usr != null) {
+                _this.Usuario = JSON.parse(usr);
+                _this.logeado = true;
+            }
             //alert(JSON.stringify(this.Usuario)); 
         }, function (err) {
             _this.logeado = false;
