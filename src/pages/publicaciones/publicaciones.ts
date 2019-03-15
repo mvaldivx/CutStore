@@ -29,7 +29,7 @@ export class PublicacionesPage {
         this.infoPage ={titulo:navParams.get("titulo"),img:navParams.get("imag")};
         let loader = this.loadingCtrl.create();
           loader.present();
-          this.ref.on('value', resp => {
+          this.ref.orderByChild('categoria').equalTo(navParams.get("titulo")).once('value', resp => {
             this.anuncios = [];
             this.anuncios = GetAnuncios(resp);
           });

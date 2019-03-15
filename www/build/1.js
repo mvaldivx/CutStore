@@ -217,7 +217,7 @@ var MisAnunciosPage = /** @class */ (function () {
         this.accountid = "";
         this.ref = __WEBPACK_IMPORTED_MODULE_3_Firebase__["database"]().ref('Anuncios/');
         this.accountid = this.navParams.get("accountId");
-        this.ref.on('value', function (resp) {
+        this.ref.orderByChild('idUsuario').equalTo(this.accountid).once('value', function (resp) {
             _this.anuncios = [];
             _this.anuncios = GetAnuncios(resp);
         });

@@ -24,7 +24,7 @@ export class MisAnunciosPage {
     ) {
       this.accountid = this.navParams.get("accountId");
 
-      this.ref.on('value', resp => {
+      this.ref.orderByChild('idUsuario').equalTo(this.accountid).once('value', resp => {
         this.anuncios = [];
         this.anuncios = GetAnuncios(resp);
       });

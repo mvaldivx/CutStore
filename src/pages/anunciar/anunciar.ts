@@ -107,7 +107,8 @@ export class AnunciarPage {
   deGaleria(){
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       saveToPhotoAlbum: false,
       allowEdit: true,
@@ -121,9 +122,10 @@ export class AnunciarPage {
      // If it's base64 (DATA_URL):
      this.imagesrc = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
-      console.log(err);
+      alert(err);
      // Handle error
     });
+
   }
 
   publicar(tipo){

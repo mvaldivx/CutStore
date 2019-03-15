@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 376:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnunciarPageModule", function() { return AnunciarPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__anunciar__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__anunciar__ = __webpack_require__(385);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -180,7 +180,7 @@ module.exports = firebase;
 
 /***/ }),
 
-/***/ 386:
+/***/ 385:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -288,7 +288,8 @@ var AnunciarPage = /** @class */ (function () {
         var _this = this;
         var options = {
             quality: 100,
-            destinationType: this.camera.DestinationType.DATA_URL,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            encodingType: this.camera.EncodingType.JPEG,
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
             saveToPhotoAlbum: false,
             allowEdit: true,
@@ -300,7 +301,7 @@ var AnunciarPage = /** @class */ (function () {
             // If it's base64 (DATA_URL):
             _this.imagesrc = 'data:image/jpeg;base64,' + imageData;
         }, function (err) {
-            console.log(err);
+            alert(err);
             // Handle error
         });
     };
