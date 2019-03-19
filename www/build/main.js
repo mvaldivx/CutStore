@@ -84,11 +84,11 @@ var map = {
 		6
 	],
 	"../pages/mis-anuncios/mis-anuncios.module": [
-		380,
+		381,
 		1
 	],
 	"../pages/nuevo-mensaje/nuevo-mensaje.module": [
-		381,
+		380,
 		5
 	],
 	"../pages/publicaciones/publicaciones.module": [
@@ -183,8 +183,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio-sesion/inicio-sesion.module#InicioSesionPageModule', name: 'InicioSesionPage', segment: 'inicio-sesion', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mensajes/mensajes.module#MensajesPageModule', name: 'MensajesPage', segment: 'mensajes', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mis-anuncios/mis-anuncios.module#MisAnunciosPageModule', name: 'MisAnunciosPage', segment: 'mis-anuncios', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nuevo-mensaje/nuevo-mensaje.module#NuevoMensajePageModule', name: 'NuevoMensajePage', segment: 'nuevo-mensaje', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mis-anuncios/mis-anuncios.module#MisAnunciosPageModule', name: 'MisAnunciosPage', segment: 'mis-anuncios', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/publicaciones/publicaciones.module#PublicacionesPageModule', name: 'PublicacionesPage', segment: 'publicaciones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/registrar-usuario/registrar-usuario.module#RegistrarUsuarioPageModule', name: 'RegistrarUsuarioPage', segment: 'registrar-usuario', priority: 'low', defaultHistory: [] }
                     ]

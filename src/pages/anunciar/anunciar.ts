@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController  } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, Platform, ToastController, Toast  } from 'ionic-angular';
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Http } from '@angular/http';
 import * as firebase from 'Firebase';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { File, FileEntry } from '@ionic-native/File/ngx';
+import { Storage } from '@ionic/storage';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
+
+const STORAGE_KEY = 'my_images';
 /**
  * Generated class for the AnunciarPage page.
  *
@@ -30,7 +36,8 @@ export class AnunciarPage {
   precio=0;
   tipo=1;
   idAnuncio=0;
-  
+  images = [];
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -38,7 +45,13 @@ export class AnunciarPage {
     private camera: Camera,
     private transfer: FileTransfer,
     private loadingCtrl: LoadingController,
-    private http: Http
+    private http: Http,
+    private platform : Platform,
+    private filePath: FilePath,
+    private file: File,
+    private toastCtrl: ToastController,
+    private storage : Storage,
+    private webView: WebView
     ) {
       this.accountId = this.navParams.get('accountId');
       this.tipo = this.navParams.get('tipo');
@@ -103,30 +116,99 @@ export class AnunciarPage {
      // Handle error
     });
   }
+
+  async presentToast(text) {
+    const toast = await this.toastCtrl.create({
+        message: text,
+        position: 'bottom',
+        duration: 3000
+    });
+    toast.present();
+  }
+ 
   
-  deGaleria(){
+  deGaleria(sourceType: PictureSourceType){
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      sourceType: sourceType,
       saveToPhotoAlbum: false,
-      allowEdit: true,
+      correctOrientation: true,
       targetWidth: 375,
       targetHeight: 375
 
     }
+
     
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     this.imagesrc = 'data:image/jpeg;base64,' + imageData;
+    
+    this.camera.getPicture(options).then(imageData => {
+      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filePath.resolveNativePath(imageData)
+            .then(filePath => {
+                let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                let currentName = imageData.substring(imageData.lastIndexOf('/') + 1, imageData.lastIndexOf('?'));
+                this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+            });
+    } else {
+        var currentName = imageData.substr(imageData.lastIndexOf('/') + 1);
+        var correctPath = imageData.substr(0, imageData.lastIndexOf('/') + 1);
+        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+    }
     }, (err) => {
       alert(err);
      // Handle error
     });
 
   }
+
+  
+  copyFileToLocalDir(namePath, currentName, newFileName) {
+    this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(success => {
+        this.updateStoredImages(newFileName);
+    }, error => {
+        this.presentToast('Error while storing file.');
+    });
+}
+
+createFileName() {
+  var d = new Date(),
+      n = d.getTime(),
+      newFileName = n + ".jpg";
+  return newFileName;
+}
+
+pathForImage(img) {
+  if (img === null) {
+    return '';
+  } else {
+    let converted = this.webView.convertFileSrc(img);
+    return converted;
+  }
+}
+
+updateStoredImages(name) {
+  this.storage.get(STORAGE_KEY).then(images => {
+      let arr = JSON.parse(images);
+      if (!arr) {
+          let newImages = [name];
+          this.storage.set(STORAGE_KEY, JSON.stringify(newImages));
+      } else {
+          arr.push(name);
+          this.storage.set(STORAGE_KEY, JSON.stringify(arr));
+      }
+
+      let filePath = this.file.dataDirectory + name;
+      let resPath = this.pathForImage(filePath);
+
+      let newEntry = {
+          name: name,
+          path: resPath,
+          filePath: filePath
+      };
+
+      this.images = [newEntry, ...this.images];
+      //this.ref.detectChanges(); // trigger change detection cycle
+  });
+}
 
   publicar(tipo){
     let loader = this.loadingCtrl.create();

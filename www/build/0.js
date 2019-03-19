@@ -224,7 +224,7 @@ var PublicacionesPage = /** @class */ (function () {
             this.infoPage = { titulo: navParams.get("titulo"), img: navParams.get("imag") };
             var loader = this.loadingCtrl.create();
             loader.present();
-            this.ref.orderByChild('categoria').equalTo(navParams.get("titulo")).once('value', function (resp) {
+            this.ref.on('value', function (resp) {
                 _this.anuncios = [];
                 _this.anuncios = GetAnuncios(resp);
             });

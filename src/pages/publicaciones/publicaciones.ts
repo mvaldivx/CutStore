@@ -29,7 +29,8 @@ export class PublicacionesPage {
         this.infoPage ={titulo:navParams.get("titulo"),img:navParams.get("imag")};
         let loader = this.loadingCtrl.create();
           loader.present();
-          this.ref.orderByChild('categoria').equalTo(navParams.get("titulo")).once('value', resp => {
+          this.ref.on('value', resp => {//.orderByChild('categoria').equalTo((navParams.get("titulo")).upperCase)
+          
             this.anuncios = [];
             this.anuncios = GetAnuncios(resp);
           });
